@@ -58,6 +58,7 @@
     <Compile Include="BLL\Khoa.cs" />
     <Compile Include="BLL\Lop.cs" />
     <Compile Include="BLL\SinhVienBLL.cs" />
+    <Compile Include="BLL\TrinhDo.cs" />
     <Compile Include="COMMON\KeyConst.cs" />
     <Compile Include="Entity\BANGDIEM.cs" />
     <Compile Include="Entity\BODE.cs" />

@@ -10,19 +10,23 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using ThiTracNghiem.COMMON;
 using ThiTracNghiem.BLL;
+using ThiTracNghiem.Entity;
 
 namespace ThiTracNghiem
 {
     public partial class FormQuanLy : DevExpress.XtraEditors.XtraForm
-    {
+    { 
         string MACS = null;
+        List<TRINHDO> lstTrinhDo = null;
         #region contructor
         public FormQuanLy()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             gv_DSKhoa.MouseEnter += gv_DSKhoa_RowCellClick;
-            CreateContextMenu();
+            CreateContextMenu_Khoa();
+            CreateContextMenu_Lop();
+            CreateContextMenu_SV();
             setQuyen();
         }
         #endregion
@@ -54,8 +58,8 @@ namespace ThiTracNghiem
                     break;
             }
         }
-
-        private void CreateContextMenu()
+        #region menutrip
+        private void CreateContextMenu_Khoa()
         {
             ContextMenuStrip menuStrip = new ContextMenuStrip();
             ToolStripMenuItem menuItem = null;
@@ -64,45 +68,164 @@ namespace ThiTracNghiem
                 switch (i)
                 {
                     case 0:
-                        menuItem = new ToolStripMenuItem("Thêm khoa mới");
-                        menuItem.Name = "mntThemKhoa";
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.THEM);
+                        menuItem.Name = KeyConst.MenuStripItemValue.THEM;
                         break;
                     case 1:
-                        menuItem = new ToolStripMenuItem("Xóa khoa");
-                        menuItem.Name = "mntXoaKhoa";
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.XOA);
+                        menuItem.Name = KeyConst.MenuStripItemValue.XOA;
                         break;
                     case 2:
-                        menuItem = new ToolStripMenuItem("Lưu");
-                        menuItem.Name = "mntLuu";
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.LUU);
+                        menuItem.Name = KeyConst.MenuStripItemValue.LUU;
                         break;
                 }
-                menuItem.Click += new EventHandler(MenuStripForListKhoa_Exit);
+                menuItem.Click += new EventHandler(MenuStripForListKhoa_Event);
                 menuStrip.Items.Add(menuItem);
             }
             kHOAGridControl.ContextMenuStrip = menuStrip;
         }
+        private void CreateContextMenu_Lop()
+        {
+            ContextMenuStrip menuStrip = new ContextMenuStrip();
+            ToolStripMenuItem menuItem = null;
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.THEM);
+                        menuItem.Name = KeyConst.MenuStripItemValue.THEM;
+                        break;
+                    case 1:
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.XOA);
+                        menuItem.Name = KeyConst.MenuStripItemValue.XOA;
+                        break;
+                    case 2:
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.LUU);
+                        menuItem.Name = KeyConst.MenuStripItemValue.LUU;
+                        break;
+                }
+                menuItem.Click += new EventHandler(MenuStripForListLop_Event);
+                menuStrip.Items.Add(menuItem);
+            }
+            lOPGridControl.ContextMenuStrip = menuStrip;
+        }
+        private void CreateContextMenu_SV()
+        {
+            ContextMenuStrip menuStrip = new ContextMenuStrip();
+            ToolStripMenuItem menuItem = null;
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.THEM);
+                        menuItem.Name = KeyConst.MenuStripItemValue.THEM;
+                        break;
+                    case 1:
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.XOA);
+                        menuItem.Name = KeyConst.MenuStripItemValue.XOA;
+                        break;
+                    case 2:
+                        menuItem = new ToolStripMenuItem(KeyConst.MenuStripItemName.LUU);
+                        menuItem.Name = KeyConst.MenuStripItemValue.LUU;
+                        break;
+                }
+                menuItem.Click += new EventHandler(MenuStripForListSV_Event);
+                menuStrip.Items.Add(menuItem);
+            }
+            sINHVIENGridControl.ContextMenuStrip = menuStrip;
+        }
+        #endregion
 
-        #region MenuStripDSKhoa
-        private void MenuStripForListKhoa_Exit(object sender, EventArgs e)
+        #region MenuStripEvent
+        private void MenuStripForListKhoa_Event(object sender, EventArgs e)
         {
             ToolStripItem menuItem = (ToolStripItem)sender;
             switch (menuItem.Name)
             {
-                case "mntThemKhoa":
+                case KeyConst.MenuStripItemValue.THEM:
+                    {
+                        kHOABindingSource.AddNew();
+                        gv_DSKhoa.SetFocusedRowCellValue("MACS", MACS);   
+                        break;
+                    }
+                case KeyConst.MenuStripItemValue.LUU:
+                    { 
+                        if(MessageBox.Show("Bạn có chắc chắn lưu lại dữ liệu ?","Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            kHOABindingSource.EndEdit();
+                            kHOABindingSource.ResetCurrentItem();
+                            kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+                            kHOATableAdapter.Update(dtsTTN.KHOA);
+                        }  
+                        break;
+                    }
+                case KeyConst.MenuStripItemValue.XOA:
+                    {
+                        kHOABindingSource.RemoveCurrent();
+                        break;
+                    }
+            }
+        }
+        private void MenuStripForListLop_Event(object sender, EventArgs e)
+        {
+            ToolStripItem menuItem = (ToolStripItem)sender;
+            switch (menuItem.Name)
+            {
+                case KeyConst.MenuStripItemValue.THEM:
+                    {
+                        lOPBindingSource.AddNew(); 
+                        gv_DS_Lop.SetFocusedRowCellValue("MAKH", ((DataRowView)kHOABindingSource.Current)["MAKH"].ToString());
+                        System.Windows.Forms.ComboBox cbbTrinhDo = new System.Windows.Forms.ComboBox();
+                        cbbTrinhDo.DataSource = TrinhDo.GetAllTrinhDo();
+                        cbbTrinhDo.DisplayMember = "TENTD";
+                        cbbTrinhDo.ValueMember = "MATD";
+                        lOPGridControl.Controls.Add(cbbTrinhDo);       
+                        break;
+                    }
+                case KeyConst.MenuStripItemValue.LUU:
+                    {
+                        if (MessageBox.Show("Bạn có chắc chắn lưu lại dữ liệu ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            lOPBindingSource.EndEdit();
+                            lOPBindingSource.ResetCurrentItem();
+                            lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+                            lOPTableAdapter.Update(dtsTTN.LOP);
+                        }
+                        break;
+                    }
+                case KeyConst.MenuStripItemValue.XOA:
+                    {
+                        lOPBindingSource.RemoveCurrent();
+                        break;
+                    }
+            }
+        }
+        private void MenuStripForListSV_Event(object sender, EventArgs e)
+        {
+            ToolStripItem menuItem = (ToolStripItem)sender;
+            switch (menuItem.Name)
+            {
+                case KeyConst.MenuStripItemValue.THEM:
                     {
                         kHOABindingSource.AddNew();
                         gv_DSKhoa.SetFocusedRowCellValue("MACS", MACS);
                         break;
                     }
-                case "mntLuu":
+                case KeyConst.MenuStripItemValue.LUU:
                     {
-                        kHOABindingSource.EndEdit();
-                        kHOABindingSource.ResetCurrentItem();
-                        kHOATableAdapter.Connection.ConnectionString = Program.connstr;
-                        kHOATableAdapter.Update(dtsTTN.KHOA);
+                        if (MessageBox.Show("Bạn có chắc chắn lưu lại dữ liệu ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            kHOABindingSource.EndEdit();
+                            kHOABindingSource.ResetCurrentItem();
+                            kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+                            kHOATableAdapter.Update(dtsTTN.KHOA);
+                        }
                         break;
                     }
-                case "mntXoaKhoa":
+                case KeyConst.MenuStripItemValue.XOA:
                     {
                         kHOABindingSource.RemoveCurrent();
                         break;
@@ -133,7 +256,7 @@ namespace ThiTracNghiem
 
         }
 
-        private void cbbCoSo_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbbCoSo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (cbbCoSo.SelectedValue == null || cbbCoSo.SelectedValue.ToString() == "System.Data.DataRowView") return;
             Program.servername = cbbCoSo.SelectedValue.ToString();

@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLy));
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -40,7 +39,7 @@
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.pnCoSo = new DevExpress.XtraEditors.PanelControl();
             this.cbbCoSo = new System.Windows.Forms.ComboBox();
-            this.v_DSPHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.v_DSPHANMANHBindingSource = new System.Windows.Forms.BindingSource();
             this.tRACNGHIEMDataSet = new ThiTracNghiem.TRACNGHIEMDataSet();
             this.lblCoSo = new System.Windows.Forms.Label();
             this.dtsTTN = new ThiTracNghiem.DtsTTN();
@@ -49,7 +48,7 @@
             this.tableAdapterManager1 = new ThiTracNghiem.TRACNGHIEMDataSetTableAdapters.TableAdapterManager();
             this.pnKhoa = new System.Windows.Forms.Panel();
             this.kHOAGridControl = new DevExpress.XtraGrid.GridControl();
-            this.kHOABindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kHOABindingSource = new System.Windows.Forms.BindingSource();
             this.gv_DSKhoa = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMACS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKH = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,8 +72,8 @@
             this.pnLop = new System.Windows.Forms.Panel();
             this.pnDS_SinhVien = new DevExpress.XtraEditors.PanelControl();
             this.sINHVIENGridControl = new DevExpress.XtraGrid.GridControl();
-            this.sINHVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lOPBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sINHVIENBindingSource = new System.Windows.Forms.BindingSource();
+            this.lOPBindingSource = new System.Windows.Forms.BindingSource();
             this.gv_DS_SinhVien = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMASV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -91,6 +90,7 @@
             this.colTRINHDO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lOPTableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.LOPTableAdapter();
             this.sINHVIENTableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.SINHVIENTableAdapter();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnCoSo)).BeginInit();
             this.pnCoSo.SuspendLayout();
@@ -121,6 +121,7 @@
             this.pnDS_Lop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lOPGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_DS_Lop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -207,7 +208,7 @@
             this.pnCoSo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnCoSo.Location = new System.Drawing.Point(0, 20);
             this.pnCoSo.Name = "pnCoSo";
-            this.pnCoSo.Size = new System.Drawing.Size(1815, 66);
+            this.pnCoSo.Size = new System.Drawing.Size(1815, 75);
             this.pnCoSo.TabIndex = 5;
             // 
             // cbbCoSo
@@ -225,7 +226,7 @@
             this.cbbCoSo.Size = new System.Drawing.Size(959, 32);
             this.cbbCoSo.TabIndex = 1;
             this.cbbCoSo.ValueMember = "TENSERVER";
-            this.cbbCoSo.SelectedIndexChanged += new System.EventHandler(this.cbbCoSo_SelectedIndexChanged);
+            this.cbbCoSo.SelectedIndexChanged += new System.EventHandler(this.cbbCoSo_SelectedIndexChanged_1);
             // 
             // v_DSPHANMANHBindingSource
             // 
@@ -261,6 +262,8 @@
             this.tableAdapterManager.BANGDIEMTableAdapter = null;
             this.tableAdapterManager.BODETableAdapter = null;
             this.tableAdapterManager.CAUHOITableAdapter = null;
+            this.tableAdapterManager.Connection = null;
+            this.tableAdapterManager.COSOTableAdapter = null;
             this.tableAdapterManager.CT_BAITHITableAdapter = null;
             this.tableAdapterManager.DANGKIBODETableAdapter = null;
             this.tableAdapterManager.GIANGDAYTableAdapter = null;
@@ -288,7 +291,7 @@
             this.pnKhoa.Controls.Add(this.kHOAGridControl);
             this.pnKhoa.Controls.Add(this.pnThongTinKhoa);
             this.pnKhoa.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnKhoa.Location = new System.Drawing.Point(0, 86);
+            this.pnKhoa.Location = new System.Drawing.Point(0, 95);
             this.pnKhoa.Name = "pnKhoa";
             this.pnKhoa.Size = new System.Drawing.Size(1815, 352);
             this.pnKhoa.TabIndex = 6;
@@ -519,7 +522,7 @@
             this.pnLop.Controls.Add(this.pnDS_SinhVien);
             this.pnLop.Controls.Add(this.pnDS_Lop);
             this.pnLop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnLop.Location = new System.Drawing.Point(0, 438);
+            this.pnLop.Location = new System.Drawing.Point(0, 447);
             this.pnLop.Name = "pnLop";
             this.pnLop.Size = new System.Drawing.Size(1815, 557);
             this.pnLop.TabIndex = 12;
@@ -572,6 +575,7 @@
             // 
             // colMASV
             // 
+            this.colMASV.Caption = "Mã sinh viên";
             this.colMASV.FieldName = "MASV";
             this.colMASV.Name = "colMASV";
             this.colMASV.Visible = true;
@@ -579,6 +583,7 @@
             // 
             // colHO
             // 
+            this.colHO.Caption = "Họ và tên lót";
             this.colHO.FieldName = "HO";
             this.colHO.Name = "colHO";
             this.colHO.Visible = true;
@@ -586,6 +591,7 @@
             // 
             // colTEN
             // 
+            this.colTEN.Caption = "Tên";
             this.colTEN.FieldName = "TEN";
             this.colTEN.Name = "colTEN";
             this.colTEN.Visible = true;
@@ -593,6 +599,7 @@
             // 
             // colPHAI
             // 
+            this.colPHAI.Caption = "Giới tính";
             this.colPHAI.FieldName = "PHAI";
             this.colPHAI.Name = "colPHAI";
             this.colPHAI.Visible = true;
@@ -600,6 +607,7 @@
             // 
             // colNGAYSINH
             // 
+            this.colNGAYSINH.Caption = "Ngày sinh";
             this.colNGAYSINH.FieldName = "NGAYSINH";
             this.colNGAYSINH.Name = "colNGAYSINH";
             this.colNGAYSINH.Visible = true;
@@ -614,6 +622,7 @@
             // 
             // colDCHI
             // 
+            this.colDCHI.Caption = "Địa chỉ";
             this.colDCHI.FieldName = "DCHI";
             this.colDCHI.Name = "colDCHI";
             this.colDCHI.Visible = true;
@@ -653,6 +662,7 @@
             // 
             // colMALOP
             // 
+            this.colMALOP.Caption = "Mã lớp";
             this.colMALOP.FieldName = "MALOP";
             this.colMALOP.Name = "colMALOP";
             this.colMALOP.Visible = true;
@@ -660,6 +670,7 @@
             // 
             // colTENLOP
             // 
+            this.colTENLOP.Caption = "Tên lớp";
             this.colTENLOP.FieldName = "TENLOP";
             this.colTENLOP.Name = "colTENLOP";
             this.colTENLOP.Visible = true;
@@ -667,6 +678,7 @@
             // 
             // colTRINHDO
             // 
+            this.colTRINHDO.Caption = "Trình độ";
             this.colTRINHDO.FieldName = "TRINHDO";
             this.colTRINHDO.Name = "colTRINHDO";
             this.colTRINHDO.Visible = true;
@@ -729,6 +741,7 @@
             this.pnDS_Lop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lOPGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_DS_Lop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -797,5 +810,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTENLOP;
         private DevExpress.XtraGrid.Columns.GridColumn colTRINHDO;
         private DevExpress.XtraGrid.Columns.GridColumn colMACS;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }
