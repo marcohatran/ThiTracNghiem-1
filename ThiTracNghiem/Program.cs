@@ -10,6 +10,7 @@ namespace ThiTracNghiem
 {
     static class Program
     {
+        public static Form frmHienTai = null;
         public static BindingSource bds_dspm = new BindingSource();
         public static SqlConnection conn = new SqlConnection();
         public static string connstr;

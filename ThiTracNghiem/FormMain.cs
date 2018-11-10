@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DevExpress.XtraBars;
+using System;
 using System.Windows.Forms;
-using DevExpress.XtraBars;
 using ThiTracNghiem.COMMON;
 
 namespace ThiTracNghiem
@@ -22,7 +15,7 @@ namespace ThiTracNghiem
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            
+            setQuyen(Program.mGroup);
         }
 
         public void SetUserInfo()
@@ -34,17 +27,14 @@ namespace ThiTracNghiem
         {
             if (role.Equals(KeyConst.Role.GIANGVIEN))      // GIẢNG VIÊN
             {
-                
             }
-            else  if(role.Equals(KeyConst.Role.SINHVIEN))    // SINH VIÊN
+            else if (role.Equals(KeyConst.Role.SINHVIEN))    // SINH VIÊN
             {
-                
             }
             else// KHOA HOẶC PHÒNG GIÁO VỤ
             {
                 rbpHeThong.Visible = true;
             }
-            
         }
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
@@ -52,11 +42,11 @@ namespace ThiTracNghiem
             Form frm = this.CheckExists(typeof(FormQuanLy));
             if (frm != null) frm.Activate();
             else
-            {        
+            {
                 FormQuanLy formQL = new FormQuanLy();
-                formQL.MdiParent = this;
+                ConfigForm(formQL);
                 formQL.Show();
-            }   
+            }
         }
 
         private Form CheckExists(Type ftype)
@@ -84,6 +74,35 @@ namespace ThiTracNghiem
                 formDN.Show();
             }
         }
-      
+
+        private void btnQLGV_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormGiangVien));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormGiangVien frmGV = new FormGiangVien();
+                ConfigForm(frmGV);
+                frmGV.Show();
+            }
+        }
+
+        public void ConfigForm(Form frm)
+        {
+            frm.WindowState = FormWindowState.Maximized;
+            frm.MdiParent = this;
+        }
+
+        private void btnMonHoc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormMonHoc));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormMonHoc frmMH = new FormMonHoc();
+                ConfigForm(frmMH);
+                frmMH.Show();
+            }
+        }
     }
 }

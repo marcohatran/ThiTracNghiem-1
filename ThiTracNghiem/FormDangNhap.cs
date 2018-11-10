@@ -63,7 +63,7 @@ namespace ThiTracNghiem
                 Program.mHoten = myReader.GetString(1);
                 Program.mGroup = myReader.GetString(2);
                 myReader.Close();
-                Program.thongtintaikhoan = "Mã nhân viên : " + Program.username + " - Họ tên : " + Program.mHoten + "  - Nhóm : " + Program.mGroup;
+                Program.thongtintaikhoan = "Mã : " + Program.username + " - Họ tên : " + Program.mHoten + "  - Nhóm : " + Program.mGroup;
             }
             else
             {

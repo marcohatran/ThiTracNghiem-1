@@ -708,6 +708,7 @@
             this.Name = "FormQuanLy";
             this.Text = "Quản lý";
             this.Load += new System.EventHandler(this.FormQuanLy_Load);
+            this.EnabledChanged += new System.EventHandler(this.FormQuanLy_EnabledChanged);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnCoSo)).EndInit();
             this.pnCoSo.ResumeLayout(false);
