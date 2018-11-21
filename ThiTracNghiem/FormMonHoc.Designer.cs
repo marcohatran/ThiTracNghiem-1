@@ -51,13 +51,13 @@
             this.colMAGV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lUACHONBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.kHOABindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.kHOATableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.KHOATableAdapter();
-            this.cbbKhoa = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.rtbNoiDungCH = new System.Windows.Forms.RichTextBox();
+            this.cbbKhoa = new System.Windows.Forms.ComboBox();
+            this.kHOABindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pnLuaChon = new DevExpress.XtraEditors.PanelControl();
+            this.rtbNoiDungCH = new System.Windows.Forms.RichTextBox();
+            this.kHOATableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.KHOATableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dtsTTN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mONHOCBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mONHOCGridControl)).BeginInit();
@@ -68,9 +68,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lUACHONBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kHOABindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kHOABindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnLuaChon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,7 +123,7 @@
             this.mONHOCGridControl.Location = new System.Drawing.Point(0, 70);
             this.mONHOCGridControl.MainView = this.gridView1;
             this.mONHOCGridControl.Name = "mONHOCGridControl";
-            this.mONHOCGridControl.Size = new System.Drawing.Size(1555, 446);
+            this.mONHOCGridControl.Size = new System.Drawing.Size(1555, 255);
             this.mONHOCGridControl.TabIndex = 1;
             this.mONHOCGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -171,10 +171,10 @@
             // 
             this.cAUHOIGridControl.DataSource = this.cAUHOIBindingSource;
             this.cAUHOIGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cAUHOIGridControl.Location = new System.Drawing.Point(0, 516);
+            this.cAUHOIGridControl.Location = new System.Drawing.Point(0, 325);
             this.cAUHOIGridControl.MainView = this.gvCauHoi;
             this.cAUHOIGridControl.Name = "cAUHOIGridControl";
-            this.cAUHOIGridControl.Size = new System.Drawing.Size(969, 451);
+            this.cAUHOIGridControl.Size = new System.Drawing.Size(969, 642);
             this.cAUHOIGridControl.TabIndex = 1;
             this.cAUHOIGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCauHoi});
@@ -191,7 +191,7 @@
             this.gvCauHoi.GridControl = this.cAUHOIGridControl;
             this.gvCauHoi.Name = "gvCauHoi";
             this.gvCauHoi.OptionsView.ShowGroupPanel = false;
-            this.gvCauHoi.MouseEnter += new System.EventHandler(this.gridView2_MouseEnter);
+            this.gvCauHoi.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gvCauHoi_RowClick);
             // 
             // colMACH
             // 
@@ -256,24 +256,15 @@
             this.panelControl3.Size = new System.Drawing.Size(1555, 70);
             this.panelControl3.TabIndex = 3;
             // 
-            // panelControl1
+            // label1
             // 
-            this.panelControl1.Controls.Add(this.pnLuaChon);
-            this.panelControl1.Controls.Add(this.rtbNoiDungCH);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(969, 516);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(586, 451);
-            this.panelControl1.TabIndex = 4;
-            // 
-            // kHOABindingSource
-            // 
-            this.kHOABindingSource.DataMember = "KHOA";
-            this.kHOABindingSource.DataSource = this.dtsTTN;
-            // 
-            // kHOATableAdapter
-            // 
-            this.kHOATableAdapter.ClearBeforeFill = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 20F);
+            this.label1.Location = new System.Drawing.Point(393, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 33);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Khoa";
             // 
             // cbbKhoa
             // 
@@ -288,15 +279,30 @@
             this.cbbKhoa.ValueMember = "MAKH";
             this.cbbKhoa.SelectedIndexChanged += new System.EventHandler(this.kHOAComboBox_SelectedIndexChanged);
             // 
-            // label1
+            // kHOABindingSource
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 20F);
-            this.label1.Location = new System.Drawing.Point(393, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 33);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Khoa";
+            this.kHOABindingSource.DataMember = "KHOA";
+            this.kHOABindingSource.DataSource = this.dtsTTN;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.pnLuaChon);
+            this.panelControl1.Controls.Add(this.rtbNoiDungCH);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(969, 325);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(586, 642);
+            this.panelControl1.TabIndex = 4;
+            // 
+            // pnLuaChon
+            // 
+            this.pnLuaChon.AllowDrop = true;
+            this.pnLuaChon.AllowTouchScroll = true;
+            this.pnLuaChon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnLuaChon.Location = new System.Drawing.Point(2, 170);
+            this.pnLuaChon.Name = "pnLuaChon";
+            this.pnLuaChon.Size = new System.Drawing.Size(582, 470);
+            this.pnLuaChon.TabIndex = 1;
             // 
             // rtbNoiDungCH
             // 
@@ -308,13 +314,9 @@
             this.rtbNoiDungCH.TabIndex = 0;
             this.rtbNoiDungCH.Text = "";
             // 
-            // pnLuaChon
+            // kHOATableAdapter
             // 
-            this.pnLuaChon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnLuaChon.Location = new System.Drawing.Point(2, 170);
-            this.pnLuaChon.Name = "pnLuaChon";
-            this.pnLuaChon.Size = new System.Drawing.Size(582, 279);
-            this.pnLuaChon.TabIndex = 1;
+            this.kHOATableAdapter.ClearBeforeFill = true;
             // 
             // FormMonHoc
             // 
@@ -340,9 +342,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kHOABindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kHOABindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnLuaChon)).EndInit();
             this.ResumeLayout(false);
 

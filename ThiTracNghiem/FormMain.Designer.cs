@@ -265,9 +265,6 @@
             // 
             // rbpQLKhoa
             // 
-            this.rbpQLKhoa.ItemLinks.Add(this.btnQLKhoa);
-            this.rbpQLKhoa.ItemLinks.Add(this.btnQLLop);
-            this.rbpQLKhoa.ItemLinks.Add(this.btnQLSV);
             this.rbpQLKhoa.ItemLinks.Add(this.btnQLGV);
             this.rbpQLKhoa.Name = "rbpQLKhoa";
             this.rbpQLKhoa.Text = "Khoa";
@@ -275,7 +272,6 @@
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnMonHoc);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnTaoBoDe);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Giảng Viên";
             // 

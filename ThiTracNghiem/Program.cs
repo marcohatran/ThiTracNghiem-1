@@ -53,6 +53,31 @@ namespace ThiTracNghiem
                 return 0;
             }
         }
+        public static int ExecuteReader(SqlCommand cmd)
+        {
+            int result;
+            try
+            {
+                Program.KetNoi();
+                cmd.Connection = Program.conn;
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Loi khi thuc thi lenh SQL: " + ex.Message);
+            }
+            finally
+            {
+                Program.conn.Close();
+            }
+            try
+            {
+                result = (int)cmd.Parameters["@VALUE"].Value;
+            }
+            catch { }
+
+            return result;
+        }
         public static SqlDataReader ExecSqlDataReader(String strLenh)
         {
             SqlDataReader myreader;
@@ -71,6 +96,7 @@ namespace ThiTracNghiem
                 return null;
             }
         }
+     
         public static DataTable ExecSqlDataTable(String cmd, string connstr)
         {
             DataTable dt = new DataTable();

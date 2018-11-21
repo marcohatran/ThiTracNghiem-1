@@ -52,35 +52,35 @@ namespace ThiTracNghiem {
         
         private TRINHDODataTable tableTRINHDO;
         
-        private global::System.Data.DataRelation relationFK_BANGDIEM_SINHVIEN;
-        
         private global::System.Data.DataRelation relationFK_BANGDIEM_DANGKIBODE1;
         
-        private global::System.Data.DataRelation relationFK_BODE_CAUHOI;
+        private global::System.Data.DataRelation relationFK_BANGDIEM_SINHVIEN;
         
         private global::System.Data.DataRelation relationFK_BODE_DANGKIBODE1;
         
-        private global::System.Data.DataRelation relationFK_CAUHOI_GIANGVIEN;
-        
-        private global::System.Data.DataRelation relationFK_CAUHOI_MONHOC;
+        private global::System.Data.DataRelation relationFK_BODE_CAUHOI;
         
         private global::System.Data.DataRelation relationFK_CAUHOI_TRINHDO;
         
-        private global::System.Data.DataRelation relationFK_CT_BAITHI_BANGDIEM;
+        private global::System.Data.DataRelation relationFK_CAUHOI_MONHOC;
+        
+        private global::System.Data.DataRelation relationFK_CAUHOI_GIANGVIEN;
         
         private global::System.Data.DataRelation relationFK_CT_BAITHI_BODE;
         
-        private global::System.Data.DataRelation relationFK_DANGKIBODE_MONHOC;
-        
-        private global::System.Data.DataRelation relationFK_DANGKIBODE_GIANGVIEN;
+        private global::System.Data.DataRelation relationFK_CT_BAITHI_BANGDIEM;
         
         private global::System.Data.DataRelation relationFK_DANGKIBODE_LOP;
         
-        private global::System.Data.DataRelation relationFK_GIANGDAY_MONHOC;
+        private global::System.Data.DataRelation relationFK_DANGKIBODE_GIANGVIEN;
+        
+        private global::System.Data.DataRelation relationFK_DANGKIBODE_MONHOC;
+        
+        private global::System.Data.DataRelation relationFK_GIANGDAY_LOP;
         
         private global::System.Data.DataRelation relationFK_GIANGDAY_GIANGVIEN;
         
-        private global::System.Data.DataRelation relationFK_GIANGDAY_LOP;
+        private global::System.Data.DataRelation relationFK_GIANGDAY_MONHOC;
         
         private global::System.Data.DataRelation relationFK_LOP_KHOA;
         
@@ -546,21 +546,21 @@ namespace ThiTracNghiem {
                     this.tableTRINHDO.InitVars();
                 }
             }
-            this.relationFK_BANGDIEM_SINHVIEN = this.Relations["FK_BANGDIEM_SINHVIEN"];
             this.relationFK_BANGDIEM_DANGKIBODE1 = this.Relations["FK_BANGDIEM_DANGKIBODE1"];
-            this.relationFK_BODE_CAUHOI = this.Relations["FK_BODE_CAUHOI"];
+            this.relationFK_BANGDIEM_SINHVIEN = this.Relations["FK_BANGDIEM_SINHVIEN"];
             this.relationFK_BODE_DANGKIBODE1 = this.Relations["FK_BODE_DANGKIBODE1"];
-            this.relationFK_CAUHOI_GIANGVIEN = this.Relations["FK_CAUHOI_GIANGVIEN"];
-            this.relationFK_CAUHOI_MONHOC = this.Relations["FK_CAUHOI_MONHOC"];
+            this.relationFK_BODE_CAUHOI = this.Relations["FK_BODE_CAUHOI"];
             this.relationFK_CAUHOI_TRINHDO = this.Relations["FK_CAUHOI_TRINHDO"];
-            this.relationFK_CT_BAITHI_BANGDIEM = this.Relations["FK_CT_BAITHI_BANGDIEM"];
+            this.relationFK_CAUHOI_MONHOC = this.Relations["FK_CAUHOI_MONHOC"];
+            this.relationFK_CAUHOI_GIANGVIEN = this.Relations["FK_CAUHOI_GIANGVIEN"];
             this.relationFK_CT_BAITHI_BODE = this.Relations["FK_CT_BAITHI_BODE"];
-            this.relationFK_DANGKIBODE_MONHOC = this.Relations["FK_DANGKIBODE_MONHOC"];
-            this.relationFK_DANGKIBODE_GIANGVIEN = this.Relations["FK_DANGKIBODE_GIANGVIEN"];
+            this.relationFK_CT_BAITHI_BANGDIEM = this.Relations["FK_CT_BAITHI_BANGDIEM"];
             this.relationFK_DANGKIBODE_LOP = this.Relations["FK_DANGKIBODE_LOP"];
-            this.relationFK_GIANGDAY_MONHOC = this.Relations["FK_GIANGDAY_MONHOC"];
-            this.relationFK_GIANGDAY_GIANGVIEN = this.Relations["FK_GIANGDAY_GIANGVIEN"];
+            this.relationFK_DANGKIBODE_GIANGVIEN = this.Relations["FK_DANGKIBODE_GIANGVIEN"];
+            this.relationFK_DANGKIBODE_MONHOC = this.Relations["FK_DANGKIBODE_MONHOC"];
             this.relationFK_GIANGDAY_LOP = this.Relations["FK_GIANGDAY_LOP"];
+            this.relationFK_GIANGDAY_GIANGVIEN = this.Relations["FK_GIANGDAY_GIANGVIEN"];
+            this.relationFK_GIANGDAY_MONHOC = this.Relations["FK_GIANGDAY_MONHOC"];
             this.relationFK_LOP_KHOA = this.Relations["FK_LOP_KHOA"];
             this.relationFK_LUACHON_CAUHOI1 = this.Relations["FK_LUACHON_CAUHOI1"];
             this.relationFK_SINHVIEN_LOP = this.Relations["FK_SINHVIEN_LOP"];
@@ -605,13 +605,6 @@ namespace ThiTracNghiem {
             this.tableTRINHDO = new TRINHDODataTable();
             base.Tables.Add(this.tableTRINHDO);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_BANGDIEM_SINHVIEN", new global::System.Data.DataColumn[] {
-                        this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBANGDIEM.MASVColumn});
-            this.tableBANGDIEM.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.None;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_BANGDIEM_DANGKIBODE1", new global::System.Data.DataColumn[] {
                         this.tableDANGKIBODE.MABODEColumn}, new global::System.Data.DataColumn[] {
                         this.tableBANGDIEM.MABODEColumn});
@@ -619,10 +612,10 @@ namespace ThiTracNghiem {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_BODE_CAUHOI", new global::System.Data.DataColumn[] {
-                        this.tableCAUHOI.MACHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBODE.MACHColumn});
-            this.tableBODE.Constraints.Add(fkc);
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_BANGDIEM_SINHVIEN", new global::System.Data.DataColumn[] {
+                        this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBANGDIEM.MASVColumn});
+            this.tableBANGDIEM.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
@@ -633,9 +626,16 @@ namespace ThiTracNghiem {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_CAUHOI_GIANGVIEN", new global::System.Data.DataColumn[] {
-                        this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCAUHOI.MAGVColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_BODE_CAUHOI", new global::System.Data.DataColumn[] {
+                        this.tableCAUHOI.MACHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBODE.MACHColumn});
+            this.tableBODE.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_CAUHOI_TRINHDO", new global::System.Data.DataColumn[] {
+                        this.tableTRINHDO.MATDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableCAUHOI.TRINHDOColumn});
             this.tableCAUHOI.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
@@ -647,17 +647,10 @@ namespace ThiTracNghiem {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_CAUHOI_TRINHDO", new global::System.Data.DataColumn[] {
-                        this.tableTRINHDO.MATDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCAUHOI.TRINHDOColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_CAUHOI_GIANGVIEN", new global::System.Data.DataColumn[] {
+                        this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableCAUHOI.MAGVColumn});
             this.tableCAUHOI.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.None;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_CT_BAITHI_BANGDIEM", new global::System.Data.DataColumn[] {
-                        this.tableBANGDIEM.MABAITHIColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCT_BAITHI.MABAITHIColumn});
-            this.tableCT_BAITHI.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
@@ -668,9 +661,16 @@ namespace ThiTracNghiem {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_DANGKIBODE_MONHOC", new global::System.Data.DataColumn[] {
-                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDANGKIBODE.MAMHColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_CT_BAITHI_BANGDIEM", new global::System.Data.DataColumn[] {
+                        this.tableBANGDIEM.MABAITHIColumn}, new global::System.Data.DataColumn[] {
+                        this.tableCT_BAITHI.MABAITHIColumn});
+            this.tableCT_BAITHI.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_DANGKIBODE_LOP", new global::System.Data.DataColumn[] {
+                        this.tableLOP.MALOPColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDANGKIBODE.MALOPColumn});
             this.tableDANGKIBODE.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
@@ -682,16 +682,16 @@ namespace ThiTracNghiem {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_DANGKIBODE_LOP", new global::System.Data.DataColumn[] {
-                        this.tableLOP.MALOPColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDANGKIBODE.MALOPColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_DANGKIBODE_MONHOC", new global::System.Data.DataColumn[] {
+                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDANGKIBODE.MAMHColumn});
             this.tableDANGKIBODE.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_GIANGDAY_MONHOC", new global::System.Data.DataColumn[] {
-                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableGIANGDAY.MAMHColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_GIANGDAY_LOP", new global::System.Data.DataColumn[] {
+                        this.tableLOP.MALOPColumn}, new global::System.Data.DataColumn[] {
+                        this.tableGIANGDAY.MALOPColumn});
             this.tableGIANGDAY.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
@@ -703,9 +703,9 @@ namespace ThiTracNghiem {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_GIANGDAY_LOP", new global::System.Data.DataColumn[] {
-                        this.tableLOP.MALOPColumn}, new global::System.Data.DataColumn[] {
-                        this.tableGIANGDAY.MALOPColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_GIANGDAY_MONHOC", new global::System.Data.DataColumn[] {
+                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableGIANGDAY.MAMHColumn});
             this.tableGIANGDAY.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
@@ -731,66 +731,66 @@ namespace ThiTracNghiem {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_BANGDIEM_SINHVIEN = new global::System.Data.DataRelation("FK_BANGDIEM_SINHVIEN", new global::System.Data.DataColumn[] {
-                        this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBANGDIEM.MASVColumn}, false);
-            this.Relations.Add(this.relationFK_BANGDIEM_SINHVIEN);
             this.relationFK_BANGDIEM_DANGKIBODE1 = new global::System.Data.DataRelation("FK_BANGDIEM_DANGKIBODE1", new global::System.Data.DataColumn[] {
                         this.tableDANGKIBODE.MABODEColumn}, new global::System.Data.DataColumn[] {
                         this.tableBANGDIEM.MABODEColumn}, false);
             this.Relations.Add(this.relationFK_BANGDIEM_DANGKIBODE1);
-            this.relationFK_BODE_CAUHOI = new global::System.Data.DataRelation("FK_BODE_CAUHOI", new global::System.Data.DataColumn[] {
-                        this.tableCAUHOI.MACHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBODE.MACHColumn}, false);
-            this.Relations.Add(this.relationFK_BODE_CAUHOI);
+            this.relationFK_BANGDIEM_SINHVIEN = new global::System.Data.DataRelation("FK_BANGDIEM_SINHVIEN", new global::System.Data.DataColumn[] {
+                        this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBANGDIEM.MASVColumn}, false);
+            this.Relations.Add(this.relationFK_BANGDIEM_SINHVIEN);
             this.relationFK_BODE_DANGKIBODE1 = new global::System.Data.DataRelation("FK_BODE_DANGKIBODE1", new global::System.Data.DataColumn[] {
                         this.tableDANGKIBODE.MABODEColumn}, new global::System.Data.DataColumn[] {
                         this.tableBODE.MABODEColumn}, false);
             this.Relations.Add(this.relationFK_BODE_DANGKIBODE1);
-            this.relationFK_CAUHOI_GIANGVIEN = new global::System.Data.DataRelation("FK_CAUHOI_GIANGVIEN", new global::System.Data.DataColumn[] {
-                        this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCAUHOI.MAGVColumn}, false);
-            this.Relations.Add(this.relationFK_CAUHOI_GIANGVIEN);
-            this.relationFK_CAUHOI_MONHOC = new global::System.Data.DataRelation("FK_CAUHOI_MONHOC", new global::System.Data.DataColumn[] {
-                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCAUHOI.MAMHColumn}, false);
-            this.Relations.Add(this.relationFK_CAUHOI_MONHOC);
+            this.relationFK_BODE_CAUHOI = new global::System.Data.DataRelation("FK_BODE_CAUHOI", new global::System.Data.DataColumn[] {
+                        this.tableCAUHOI.MACHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBODE.MACHColumn}, false);
+            this.Relations.Add(this.relationFK_BODE_CAUHOI);
             this.relationFK_CAUHOI_TRINHDO = new global::System.Data.DataRelation("FK_CAUHOI_TRINHDO", new global::System.Data.DataColumn[] {
                         this.tableTRINHDO.MATDColumn}, new global::System.Data.DataColumn[] {
                         this.tableCAUHOI.TRINHDOColumn}, false);
             this.Relations.Add(this.relationFK_CAUHOI_TRINHDO);
-            this.relationFK_CT_BAITHI_BANGDIEM = new global::System.Data.DataRelation("FK_CT_BAITHI_BANGDIEM", new global::System.Data.DataColumn[] {
-                        this.tableBANGDIEM.MABAITHIColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCT_BAITHI.MABAITHIColumn}, false);
-            this.Relations.Add(this.relationFK_CT_BAITHI_BANGDIEM);
+            this.relationFK_CAUHOI_MONHOC = new global::System.Data.DataRelation("FK_CAUHOI_MONHOC", new global::System.Data.DataColumn[] {
+                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableCAUHOI.MAMHColumn}, false);
+            this.Relations.Add(this.relationFK_CAUHOI_MONHOC);
+            this.relationFK_CAUHOI_GIANGVIEN = new global::System.Data.DataRelation("FK_CAUHOI_GIANGVIEN", new global::System.Data.DataColumn[] {
+                        this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableCAUHOI.MAGVColumn}, false);
+            this.Relations.Add(this.relationFK_CAUHOI_GIANGVIEN);
             this.relationFK_CT_BAITHI_BODE = new global::System.Data.DataRelation("FK_CT_BAITHI_BODE", new global::System.Data.DataColumn[] {
                         this.tableBODE.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableCT_BAITHI.IDBDColumn}, false);
             this.Relations.Add(this.relationFK_CT_BAITHI_BODE);
-            this.relationFK_DANGKIBODE_MONHOC = new global::System.Data.DataRelation("FK_DANGKIBODE_MONHOC", new global::System.Data.DataColumn[] {
-                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDANGKIBODE.MAMHColumn}, false);
-            this.Relations.Add(this.relationFK_DANGKIBODE_MONHOC);
-            this.relationFK_DANGKIBODE_GIANGVIEN = new global::System.Data.DataRelation("FK_DANGKIBODE_GIANGVIEN", new global::System.Data.DataColumn[] {
-                        this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDANGKIBODE.MAGVColumn}, false);
-            this.Relations.Add(this.relationFK_DANGKIBODE_GIANGVIEN);
+            this.relationFK_CT_BAITHI_BANGDIEM = new global::System.Data.DataRelation("FK_CT_BAITHI_BANGDIEM", new global::System.Data.DataColumn[] {
+                        this.tableBANGDIEM.MABAITHIColumn}, new global::System.Data.DataColumn[] {
+                        this.tableCT_BAITHI.MABAITHIColumn}, false);
+            this.Relations.Add(this.relationFK_CT_BAITHI_BANGDIEM);
             this.relationFK_DANGKIBODE_LOP = new global::System.Data.DataRelation("FK_DANGKIBODE_LOP", new global::System.Data.DataColumn[] {
                         this.tableLOP.MALOPColumn}, new global::System.Data.DataColumn[] {
                         this.tableDANGKIBODE.MALOPColumn}, false);
             this.Relations.Add(this.relationFK_DANGKIBODE_LOP);
-            this.relationFK_GIANGDAY_MONHOC = new global::System.Data.DataRelation("FK_GIANGDAY_MONHOC", new global::System.Data.DataColumn[] {
-                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableGIANGDAY.MAMHColumn}, false);
-            this.Relations.Add(this.relationFK_GIANGDAY_MONHOC);
-            this.relationFK_GIANGDAY_GIANGVIEN = new global::System.Data.DataRelation("FK_GIANGDAY_GIANGVIEN", new global::System.Data.DataColumn[] {
+            this.relationFK_DANGKIBODE_GIANGVIEN = new global::System.Data.DataRelation("FK_DANGKIBODE_GIANGVIEN", new global::System.Data.DataColumn[] {
                         this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableGIANGDAY.MAGVColumn}, false);
-            this.Relations.Add(this.relationFK_GIANGDAY_GIANGVIEN);
+                        this.tableDANGKIBODE.MAGVColumn}, false);
+            this.Relations.Add(this.relationFK_DANGKIBODE_GIANGVIEN);
+            this.relationFK_DANGKIBODE_MONHOC = new global::System.Data.DataRelation("FK_DANGKIBODE_MONHOC", new global::System.Data.DataColumn[] {
+                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDANGKIBODE.MAMHColumn}, false);
+            this.Relations.Add(this.relationFK_DANGKIBODE_MONHOC);
             this.relationFK_GIANGDAY_LOP = new global::System.Data.DataRelation("FK_GIANGDAY_LOP", new global::System.Data.DataColumn[] {
                         this.tableLOP.MALOPColumn}, new global::System.Data.DataColumn[] {
                         this.tableGIANGDAY.MALOPColumn}, false);
             this.Relations.Add(this.relationFK_GIANGDAY_LOP);
+            this.relationFK_GIANGDAY_GIANGVIEN = new global::System.Data.DataRelation("FK_GIANGDAY_GIANGVIEN", new global::System.Data.DataColumn[] {
+                        this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableGIANGDAY.MAGVColumn}, false);
+            this.Relations.Add(this.relationFK_GIANGDAY_GIANGVIEN);
+            this.relationFK_GIANGDAY_MONHOC = new global::System.Data.DataRelation("FK_GIANGDAY_MONHOC", new global::System.Data.DataColumn[] {
+                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableGIANGDAY.MAMHColumn}, false);
+            this.Relations.Add(this.relationFK_GIANGDAY_MONHOC);
             this.relationFK_LOP_KHOA = new global::System.Data.DataRelation("FK_LOP_KHOA", new global::System.Data.DataColumn[] {
                         this.tableKHOA.MAKHColumn}, new global::System.Data.DataColumn[] {
                         this.tableLOP.MAKHColumn}, false);
@@ -1743,10 +1743,10 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CAUHOIRow AddCAUHOIRow(int MACH, string NOIDUNG, string DAPAN, TRINHDORow parentTRINHDORowByFK_CAUHOI_TRINHDO, MONHOCRow parentMONHOCRowByFK_CAUHOI_MONHOC, GIANGVIENRow parentGIANGVIENRowByFK_CAUHOI_GIANGVIEN) {
+            public CAUHOIRow AddCAUHOIRow(string NOIDUNG, string DAPAN, TRINHDORow parentTRINHDORowByFK_CAUHOI_TRINHDO, MONHOCRow parentMONHOCRowByFK_CAUHOI_MONHOC, GIANGVIENRow parentGIANGVIENRowByFK_CAUHOI_GIANGVIEN) {
                 CAUHOIRow rowCAUHOIRow = ((CAUHOIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        MACH,
+                        null,
                         NOIDUNG,
                         DAPAN,
                         null,
@@ -1815,6 +1815,8 @@ namespace ThiTracNghiem {
                 base.Columns.Add(this.columnMAGV);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMACH}, true));
+                this.columnMACH.AutoIncrement = true;
+                this.columnMACH.AutoIncrementSeed = 1;
                 this.columnMACH.AllowDBNull = false;
                 this.columnMACH.Unique = true;
                 this.columnNOIDUNG.AllowDBNull = false;
@@ -5507,23 +5509,23 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SINHVIENRow SINHVIENRow {
-                get {
-                    return ((SINHVIENRow)(this.GetParentRow(this.Table.ParentRelations["FK_BANGDIEM_SINHVIEN"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_BANGDIEM_SINHVIEN"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DANGKIBODERow DANGKIBODERow {
                 get {
                     return ((DANGKIBODERow)(this.GetParentRow(this.Table.ParentRelations["FK_BANGDIEM_DANGKIBODE1"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_BANGDIEM_DANGKIBODE1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SINHVIENRow SINHVIENRow {
+                get {
+                    return ((SINHVIENRow)(this.GetParentRow(this.Table.ParentRelations["FK_BANGDIEM_SINHVIEN"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_BANGDIEM_SINHVIEN"]);
                 }
             }
             
@@ -5588,23 +5590,23 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CAUHOIRow CAUHOIRow {
-                get {
-                    return ((CAUHOIRow)(this.GetParentRow(this.Table.ParentRelations["FK_BODE_CAUHOI"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_BODE_CAUHOI"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DANGKIBODERow DANGKIBODERow {
                 get {
                     return ((DANGKIBODERow)(this.GetParentRow(this.Table.ParentRelations["FK_BODE_DANGKIBODE1"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_BODE_DANGKIBODE1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CAUHOIRow CAUHOIRow {
+                get {
+                    return ((CAUHOIRow)(this.GetParentRow(this.Table.ParentRelations["FK_BODE_CAUHOI"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_BODE_CAUHOI"]);
                 }
             }
             
@@ -5702,12 +5704,12 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GIANGVIENRow GIANGVIENRow {
+            public TRINHDORow TRINHDORow {
                 get {
-                    return ((GIANGVIENRow)(this.GetParentRow(this.Table.ParentRelations["FK_CAUHOI_GIANGVIEN"])));
+                    return ((TRINHDORow)(this.GetParentRow(this.Table.ParentRelations["FK_CAUHOI_TRINHDO"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CAUHOI_GIANGVIEN"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_CAUHOI_TRINHDO"]);
                 }
             }
             
@@ -5724,12 +5726,12 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TRINHDORow TRINHDORow {
+            public GIANGVIENRow GIANGVIENRow {
                 get {
-                    return ((TRINHDORow)(this.GetParentRow(this.Table.ParentRelations["FK_CAUHOI_TRINHDO"])));
+                    return ((GIANGVIENRow)(this.GetParentRow(this.Table.ParentRelations["FK_CAUHOI_GIANGVIEN"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CAUHOI_TRINHDO"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_CAUHOI_GIANGVIEN"]);
                 }
             }
             
@@ -5875,23 +5877,23 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BANGDIEMRow BANGDIEMRow {
-                get {
-                    return ((BANGDIEMRow)(this.GetParentRow(this.Table.ParentRelations["FK_CT_BAITHI_BANGDIEM"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CT_BAITHI_BANGDIEM"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public BODERow BODERow {
                 get {
                     return ((BODERow)(this.GetParentRow(this.Table.ParentRelations["FK_CT_BAITHI_BODE"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_CT_BAITHI_BODE"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public BANGDIEMRow BANGDIEMRow {
+                get {
+                    return ((BANGDIEMRow)(this.GetParentRow(this.Table.ParentRelations["FK_CT_BAITHI_BANGDIEM"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_CT_BAITHI_BANGDIEM"]);
                 }
             }
         }
@@ -6011,12 +6013,12 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MONHOCRow MONHOCRow {
+            public LOPRow LOPRow {
                 get {
-                    return ((MONHOCRow)(this.GetParentRow(this.Table.ParentRelations["FK_DANGKIBODE_MONHOC"])));
+                    return ((LOPRow)(this.GetParentRow(this.Table.ParentRelations["FK_DANGKIBODE_LOP"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_DANGKIBODE_MONHOC"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_DANGKIBODE_LOP"]);
                 }
             }
             
@@ -6033,12 +6035,12 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LOPRow LOPRow {
+            public MONHOCRow MONHOCRow {
                 get {
-                    return ((LOPRow)(this.GetParentRow(this.Table.ParentRelations["FK_DANGKIBODE_LOP"])));
+                    return ((MONHOCRow)(this.GetParentRow(this.Table.ParentRelations["FK_DANGKIBODE_MONHOC"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_DANGKIBODE_LOP"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_DANGKIBODE_MONHOC"]);
                 }
             }
             
@@ -6125,12 +6127,12 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MONHOCRow MONHOCRow {
+            public LOPRow LOPRow {
                 get {
-                    return ((MONHOCRow)(this.GetParentRow(this.Table.ParentRelations["FK_GIANGDAY_MONHOC"])));
+                    return ((LOPRow)(this.GetParentRow(this.Table.ParentRelations["FK_GIANGDAY_LOP"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_GIANGDAY_MONHOC"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_GIANGDAY_LOP"]);
                 }
             }
             
@@ -6147,12 +6149,12 @@ namespace ThiTracNghiem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LOPRow LOPRow {
+            public MONHOCRow MONHOCRow {
                 get {
-                    return ((LOPRow)(this.GetParentRow(this.Table.ParentRelations["FK_GIANGDAY_LOP"])));
+                    return ((MONHOCRow)(this.GetParentRow(this.Table.ParentRelations["FK_GIANGDAY_MONHOC"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_GIANGDAY_LOP"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_GIANGDAY_MONHOC"]);
                 }
             }
         }
@@ -13082,21 +13084,21 @@ SELECT MASV, HO, TEN, NGAYSINH, DCHI, MALOP, PHAI, EMAIL FROM SINHVIEN WHERE (MA
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._cAUHOITableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.CAUHOI.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._cAUHOITableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._dANGKIBODETableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.DANGKIBODE.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._dANGKIBODETableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._sINHVIENTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SINHVIEN.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sINHVIENTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -13118,12 +13120,12 @@ SELECT MASV, HO, TEN, NGAYSINH, DCHI, MALOP, PHAI, EMAIL FROM SINHVIEN WHERE (MA
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._cAUHOITableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.CAUHOI.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._sINHVIENTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SINHVIEN.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._cAUHOITableAdapter.Update(updatedRows));
+                    result = (result + this._sINHVIENTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -13212,19 +13214,19 @@ SELECT MASV, HO, TEN, NGAYSINH, DCHI, MALOP, PHAI, EMAIL FROM SINHVIEN WHERE (MA
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._cAUHOITableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.CAUHOI.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._cAUHOITableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._dANGKIBODETableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.DANGKIBODE.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._dANGKIBODETableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._sINHVIENTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SINHVIEN.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sINHVIENTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -13244,11 +13246,11 @@ SELECT MASV, HO, TEN, NGAYSINH, DCHI, MALOP, PHAI, EMAIL FROM SINHVIEN WHERE (MA
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._cAUHOITableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.CAUHOI.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._sINHVIENTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SINHVIEN.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._cAUHOITableAdapter.Update(addedRows));
+                    result = (result + this._sINHVIENTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -13310,11 +13312,11 @@ SELECT MASV, HO, TEN, NGAYSINH, DCHI, MALOP, PHAI, EMAIL FROM SINHVIEN WHERE (MA
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._cAUHOITableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.CAUHOI.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._sINHVIENTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SINHVIEN.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._cAUHOITableAdapter.Update(deletedRows));
+                    result = (result + this._sINHVIENTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -13334,19 +13336,19 @@ SELECT MASV, HO, TEN, NGAYSINH, DCHI, MALOP, PHAI, EMAIL FROM SINHVIEN WHERE (MA
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._sINHVIENTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.SINHVIEN.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._sINHVIENTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._dANGKIBODETableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.DANGKIBODE.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._dANGKIBODETableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._cAUHOITableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.CAUHOI.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._cAUHOITableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

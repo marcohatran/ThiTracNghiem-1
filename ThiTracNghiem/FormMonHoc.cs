@@ -13,6 +13,7 @@ namespace ThiTracNghiem
     public partial class FormMonHoc : Form
     {
         string MaKhoa = null;
+        bool flag = false;
         public FormMonHoc()
         {
             InitializeComponent();
@@ -23,9 +24,11 @@ namespace ThiTracNghiem
         {
             // TODO: This line of code loads data into the 'dtsTTN.KHOA' table. You can move, or remove it, as needed.
             this.kHOATableAdapter.Fill(this.dtsTTN.KHOA);
+            dtsTTN.EnforceConstraints = false;
             cAUHOITableAdapter.Fill(this.dtsTTN.CAUHOI);
             mONHOCTableAdapter.Fill(this.dtsTTN.MONHOC);
             lUACHONTableAdapter.Fill(this.dtsTTN.LUACHON);
+            flag = true;
         }
         private void CreateContextMenu()
         {
@@ -54,45 +57,7 @@ namespace ThiTracNghiem
                 menuStrip.Items.Add(menuItem);
             }
             cAUHOIGridControl.ContextMenuStrip = menuStrip;
-        }
-        private void gridView2_MouseEnter(object sender, EventArgs e)
-        {    
-            DtsTTN.CAUHOIRow chRow = (DtsTTN.CAUHOIRow)cAUHOIBindingSource.Current;
-            if (chRow == null) return;
-            List<LUACHON> lstLC = CauHoi.GetLuaChonByMaCH(chRow.MACH);
-
-            rtbNoiDungCH.AppendText(chRow.NOIDUNG);
-            lstLC.OrderBy(x => x.MALC);
-            foreach (LUACHON lc in lstLC)
-            {
-                Panel pnAll = new Panel();
-                Panel pnLC = new Panel();
-                Panel pnNDLC = new Panel();
-                Label lbTenCH = new Label();
-                RichTextBox rtb = new RichTextBox();
-
-                lbTenCH.Dock = DockStyle.Fill;
-                lbTenCH.Text = "Câu " + lc.MALC;
-                pnLC.Controls.Add(lbTenCH);
-                pnLC.Dock = DockStyle.Left;
-                pnAll.Controls.Add(pnLC);
-
-                rtb.Multiline = true;
-                rtb.Text = lc.NOIDUNG;
-                rtb.Dock = DockStyle.Fill;
-                pnNDLC.Controls.Add(rtb);
-
-                if (chRow.DAPAN.Equals(lc.MALC))
-                {
-                    pnAll.BackColor = Color.Green;
-                }
-                pnAll.Controls.Add(pnNDLC);
-                pnAll.Dock = DockStyle.Top;
-
-                pnLuaChon.Controls.Add(pnAll);
-            }  
-        }
-
+        }  
         public void MenuStripForListCauHoi_Event(object sender, EventArgs e)
         {
             ToolStripItem menuItem = (ToolStripItem)sender;
@@ -100,6 +65,20 @@ namespace ThiTracNghiem
             {
                 case KeyConst.MenuStripItemValue.THEM:
                     {
+                        try
+                        {
+                            if (!KiemTraQuyenTaoCauHoi())
+                            {
+                                MessageBox.Show("Xin lỗi bạn không có giảng dạy môn này ?", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Lỗi kết nối !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
                         FormThemCauHoi frmThemCH = new FormThemCauHoi(((DataRowView)mONHOCBindingSource.Current)[0].ToString().Trim(), Program.username, this);
                         Enabled = false;
                         frmThemCH.Show();
@@ -109,15 +88,26 @@ namespace ThiTracNghiem
                     {
                         if (MessageBox.Show("Bạn có chắc chắn lưu lại dữ liệu ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            cAUHOIBindingSource.EndEdit();
-                            cAUHOIBindingSource.ResetCurrentItem();
-                            cAUHOITableAdapter.Connection.ConnectionString = Program.connstr;
-                            cAUHOITableAdapter.Update(dtsTTN.CAUHOI);
+                            try
+                            {
+                                cAUHOIBindingSource.EndEdit();
+                                cAUHOIBindingSource.ResetCurrentItem();
+                                cAUHOITableAdapter.Connection.ConnectionString = Program.connstr;
+                                cAUHOITableAdapter.Update(dtsTTN.CAUHOI);
+                            }
+                            catch(Exception ex)
+                            {
+                                MessageBox.Show("Không xóa được câu hỏi ? " + ex.Message, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                ReLoadData();
+                                return;
+                            }
                         }
                         break;
                     }
                 case KeyConst.MenuStripItemValue.XOA:
                     {
+                        rtbNoiDungCH.Text = string.Empty;
+                        pnLuaChon.Controls.Clear();
                         cAUHOIBindingSource.RemoveCurrent();
                         break;
                     }
@@ -150,6 +140,45 @@ namespace ThiTracNghiem
             }
             MaKhoa = cbbKhoa.SelectedValue.ToString().Trim();
             mONHOCBindingSource.Filter = "MAKH ='" + MaKhoa + "'";
+        }
+
+        public bool KiemTraQuyenTaoCauHoi()
+        {
+            string maMH = ((DataRowView)mONHOCBindingSource.Current)[0].ToString();
+            return GiangDay.KiemTraQuyenTaoCauHoi(Program.username, maMH);
+        }
+
+        private void gvCauHoi_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            pnLuaChon.Controls.Clear();
+            if (flag)
+            {   
+                rtbNoiDungCH.Text = string.Empty;
+                int maCH = Int32.Parse(((DataRowView)cAUHOIBindingSource.Current)[0].ToString().Trim());
+                if (maCH == 0) return;
+
+                CAUHOI chRow = CauHoi.GetCauHoiByMaCH(maCH);
+                List<LUACHON> lstLC = CauHoi.GetLuaChonByMaCH(maCH);
+
+                rtbNoiDungCH.AppendText(chRow.NOIDUNG);
+                lstLC.OrderBy(x => x.MALC);
+                foreach (LUACHON lc in lstLC)
+                {           
+                    RichTextBox rtb = new RichTextBox();  
+
+                    rtb.Multiline = true;
+                    rtb.Text = "Câu " + lc.MALC +" : " +lc.NOIDUNG;
+                    rtb.Dock = DockStyle.Top;   
+                    if (chRow.DAPAN.Equals(lc.MALC))
+                    {
+                        rtb.BackColor = Color.Green;
+                    }                          
+
+                    pnLuaChon.Controls.Add(rtb);
+                    pnLuaChon.AutoScroll = true;
+                    pnLuaChon.FireScrollEventOnMouseWheel = true;
+                }
+            }
         }
     }
 }

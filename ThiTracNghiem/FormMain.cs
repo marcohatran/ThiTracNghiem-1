@@ -104,5 +104,6 @@ namespace ThiTracNghiem
                 frmMH.Show();
             }
         }
+       
     }
 }

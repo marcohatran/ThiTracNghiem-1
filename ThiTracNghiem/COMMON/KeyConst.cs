@@ -20,6 +20,8 @@ namespace ThiTracNghiem.COMMON
             public const string CountGV = "SELECT COUNT(MAGV) FROM GIANGVIEN";
             public const string GetLuaChonByMaCH = "SELECT * FROM LUACHON WHERE MACH ={0}";
             public const string GetTenMonHocByMaMH = "SELECT TENMH FROM MONHOC WHERE MAMH ='{0}'";
+            public const string KiemTraQuyenTaoCauHoi = "SP_QUYENTAOCAUHOI";
+            public const string GetCauHoiByMaCH = "SELECT * FROM CAUHOI WHERE MACH = {0}";
         }
 
         public static class Role
