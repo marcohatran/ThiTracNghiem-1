@@ -75,5 +75,17 @@ namespace ThiTracNghiem.BLL
             myReader.Close();
             return lp;
         }
+
+        public static int CountSV(string maLop)
+        {
+            if (Program.KetNoi() == 0) return 0;
+            SqlDataReader myReader;
+            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.CountSV, maLop));
+            if (myReader == null) return 0;
+            myReader.Read();
+            int countResult = myReader.GetInt32(0);
+            myReader.Close();
+            return countResult;
+        }
     }
 }

@@ -59,6 +59,10 @@ namespace ThiTracNghiem.BLL
             }
             else
             {
+                if((dem+1) < 10)
+                {
+                    return "N" + lp.MALOP.Substring(1, 2) + lp.TRINHDO.Substring(0, 2) + lp.MAKH.Substring(0, 2) + "0"+(dem + 1).ToString().Trim();
+                }
                 return "N" + lp.MALOP.Substring(1, 2) + lp.TRINHDO.Substring(0, 2) + lp.MAKH.Substring(0, 2) + (dem+1).ToString().Trim();
             }
         }

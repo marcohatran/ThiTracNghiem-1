@@ -15,7 +15,7 @@ namespace ThiTracNghiem.BLL
         {
             if (Program.KetNoi() == 0) return null  ;
             SqlDataReader myReader;
-            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.GetAllTrinhDo));
+            myReader = Program.ExecSqlDataReader(KeyConst.Lenh.GetAllTrinhDo);
             if (myReader == null) return null;
             List<TRINHDO> lstTrinhDo = new List<TRINHDO>();
             while (myReader.Read())
@@ -29,6 +29,25 @@ namespace ThiTracNghiem.BLL
             }
             myReader.Close();
             return lstTrinhDo;
+        }
+
+        public static TRINHDO GetTDByMaTD(string maTD)
+        {
+            if (Program.KetNoi() == 0) return null;
+            SqlDataReader myReader;
+            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.GetTDByMaTD,maTD));
+            if (myReader == null) return null;
+            TRINHDO td = null;
+            while (myReader.Read())
+            {
+                td = new TRINHDO()
+                {
+                    MATD = myReader.GetString(0),
+                    TENTD = myReader.GetString(1)
+                };   
+            }
+            myReader.Close();
+            return td;
         }
     }
 }

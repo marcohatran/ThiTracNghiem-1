@@ -323,10 +323,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1555, 967);
+            this.ControlBox = false;
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.cAUHOIGridControl);
             this.Controls.Add(this.mONHOCGridControl);
             this.Controls.Add(this.panelControl3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMonHoc";
             this.Text = "Quản lý môn học";
             this.Load += new System.EventHandler(this.FormMonHoc_Load);

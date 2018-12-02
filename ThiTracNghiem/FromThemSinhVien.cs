@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThiTracNghiem.BLL;
+using ThiTracNghiem.COMMON;
 
 namespace ThiTracNghiem
 {
     public partial class FromThemSinhVien : Form
     {
-        bool FlagThem = false;   
-        public FromThemSinhVien( string maLop)
+        private bool FlagThem = false;
+        private bool FlagChangeNgaySinh = false;
+        public FromThemSinhVien(string maLop)
         {
-            InitializeComponent();   
+            InitializeComponent();
             txtMaLop.Text = maLop;
             txtMaSV.Text = SinhVien.TaoMaSV(maLop);
+            txtEmail.Text = (txtMaSV.Text.Trim() == "") ? KeyConst.EmailTag.Student : txtMaSV.Text.Trim() + KeyConst.EmailTag.Student;
         }
 
         private void sINHVIENBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -26,14 +22,12 @@ namespace ThiTracNghiem
             this.Validate();
             this.sINHVIENBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.dtsTTN);
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Program.frmHienTai.Enabled = true;
             Close();
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -62,6 +56,8 @@ namespace ThiTracNghiem
                     return;
                 }
                 MessageBox.Show("Thêm sinh viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.None);
+                Program.frmHienTai.Enabled = true;
+                Close();
             }
         }
 
@@ -77,7 +73,7 @@ namespace ThiTracNghiem
                 MessageBox.Show("Vui lòng nhập tên sinh viên ");
                 return;
             }
-            if(dtpkNgaySinh.Value.Year > (DateTime.UtcNow.Year - 18))
+            if (dtpkNgaySinh.Value.Year > (DateTime.UtcNow.Year - 18))
             {
                 MessageBox.Show("Ngày sinh của sinh viên không hợp lệ");
                 return;
@@ -93,6 +89,20 @@ namespace ThiTracNghiem
                 return;
             }
             FlagThem = true;
+        }
+
+        private void dtpkNgaySinh_ValueChanged(object sender, EventArgs e)
+        {
+            if(!FlagChangeNgaySinh)
+            {
+                FlagChangeNgaySinh = true;
+                return;
+            }
+            if(DateTime.UtcNow.Year - dtpkNgaySinh.Value.Year < 18)
+            {
+                MessageBox.Show("Ngày sinh của sinh viên phải đủ 18 tuổi !");
+                return;
+            }
         }
     }
 }

@@ -94,16 +94,27 @@ namespace ThiTracNghiem
         }
 
         private void btnMonHoc_ItemClick(object sender, ItemClickEventArgs e)
-        {
+        {    
             Form frm = this.CheckExists(typeof(FormMonHoc));
             if (frm != null) frm.Activate();
             else
             {
                 FormMonHoc frmMH = new FormMonHoc();
-                ConfigForm(frmMH);
+                ConfigForm(frmMH);               
                 frmMH.Show();
             }
         }
-       
+
+        private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(FormDangKyBoDe));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormDangKyBoDe frmDKBD = new FormDangKyBoDe();
+                ConfigForm(frmDKBD);
+                frmDKBD.Show();
+            }
+        }
     }
 }

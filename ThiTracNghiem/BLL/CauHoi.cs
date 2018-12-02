@@ -11,7 +11,7 @@ namespace ThiTracNghiem.BLL
         {
             if (Program.KetNoi() == 0) return null;
             SqlDataReader myReader;
-            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.GetLuaChonByMaCH,maCH));
+            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.GetLuaChonByMaCH, maCH));
             if (myReader == null) return null;
             List<LUACHON> lstLC = new List<LUACHON>();
             while (myReader.Read())
@@ -44,9 +44,21 @@ namespace ThiTracNghiem.BLL
                 TRINHDO = myReader.GetString(3),
                 MAMH = myReader.GetString(4),
                 MAGV = myReader.GetString(5)
-            };    
+            };
             myReader.Close();
             return ch;
+        }
+
+        public static int CountCauHoiByMonHoc(string maMH, string maTD)
+        {
+            if (Program.KetNoi() == 0) return 0;
+            SqlDataReader myReader;
+            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.CountCauHoiByMonHoc, maMH.Trim(), maTD.Trim()));
+            if (myReader == null) return 0;
+            myReader.Read();
+            int count = myReader.GetInt32(0);  
+            myReader.Close();
+            return count; 
         }
     }
 }

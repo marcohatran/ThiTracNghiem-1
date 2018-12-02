@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ThiTracNghiem.BLL;
+using ThiTracNghiem.COMMON;
 
 namespace ThiTracNghiem
 {
@@ -13,13 +14,16 @@ namespace ThiTracNghiem
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            txtMaKH.Text = MaKhoa = maKhoa;
+            cbbKhoa.Text = MaKhoa = maKhoa;
             txtMaGV.Text = GiangVien.TaoMaGV();
+            txtEmail.Text = (txtMaGV.Text.Trim() == "") ? KeyConst.EmailTag.Teacher : txtMaGV.Text.Trim() + KeyConst.EmailTag.Teacher;
             Parent = parent;
         }
 
         private void FormThemGiangVien_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dtsTTN.KHOA' table. You can move, or remove it, as needed.
+            this.kHOATableAdapter.Fill(this.dtsTTN.KHOA);
             gIANGVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIANGVIENTableAdapter.Fill(this.dtsTTN.GIANGVIEN);
         }
@@ -54,6 +58,13 @@ namespace ThiTracNghiem
                 {
                     MessageBox.Show("Lỗi ! Không thể thêm giảng viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+        private void kHOAComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbKhoa.SelectedValue != null)
+            {
+                string maKhoa = cbbKhoa.SelectedValue.ToString().Trim();
             }
         }
     }

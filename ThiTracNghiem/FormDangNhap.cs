@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Linq;
-using System.Data;
-using ThiTracNghiem.Entity;
 using ThiTracNghiem.BLL;
 using ThiTracNghiem.COMMON;
+using ThiTracNghiem.Entity;
 
 namespace ThiTracNghiem
 {
@@ -21,8 +19,6 @@ namespace ThiTracNghiem
         private void FormDangNhap_Load(object sender, EventArgs e)
         {
             this.v_DSPHANMANHTableAdapter.Fill(this.tRACNGHIEMDataSet.V_DSPHANMANH);
-
-            // Fix end
             cbbDanhSachPhanManh.SelectedIndex = rgbUser.SelectedIndex = 1;
             cbbDanhSachPhanManh.SelectedIndex = rgbUser.SelectedIndex = 0;
         }
@@ -45,6 +41,7 @@ namespace ThiTracNghiem
                     return;
                 }
                 if (Program.KetNoi() == 0) return;
+                Program.bds_dspm = v_DSPHANMANHBindingSource;
                 Program.mChinhanh = cbbDanhSachPhanManh.SelectedIndex;
                 Program.tenCS = cbbDanhSachPhanManh.Text.ToString();
                 SqlDataReader myReader;

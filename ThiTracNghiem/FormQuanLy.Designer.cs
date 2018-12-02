@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLy));
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -39,7 +40,7 @@
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.pnCoSo = new DevExpress.XtraEditors.PanelControl();
             this.cbbCoSo = new System.Windows.Forms.ComboBox();
-            this.v_DSPHANMANHBindingSource = new System.Windows.Forms.BindingSource();
+            this.v_DSPHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tRACNGHIEMDataSet = new ThiTracNghiem.TRACNGHIEMDataSet();
             this.lblCoSo = new System.Windows.Forms.Label();
             this.dtsTTN = new ThiTracNghiem.DtsTTN();
@@ -48,7 +49,7 @@
             this.tableAdapterManager1 = new ThiTracNghiem.TRACNGHIEMDataSetTableAdapters.TableAdapterManager();
             this.pnKhoa = new System.Windows.Forms.Panel();
             this.kHOAGridControl = new DevExpress.XtraGrid.GridControl();
-            this.kHOABindingSource = new System.Windows.Forms.BindingSource();
+            this.kHOABindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gv_DSKhoa = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMACS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKH = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -72,8 +73,8 @@
             this.pnLop = new System.Windows.Forms.Panel();
             this.pnDS_SinhVien = new DevExpress.XtraEditors.PanelControl();
             this.sINHVIENGridControl = new DevExpress.XtraGrid.GridControl();
-            this.sINHVIENBindingSource = new System.Windows.Forms.BindingSource();
-            this.lOPBindingSource = new System.Windows.Forms.BindingSource();
+            this.sINHVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lOPBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gv_DS_SinhVien = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMASV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -90,7 +91,7 @@
             this.colTRINHDO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lOPTableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.LOPTableAdapter();
             this.sINHVIENTableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.SINHVIENTableAdapter();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnCoSo)).BeginInit();
             this.pnCoSo.SuspendLayout();
@@ -599,7 +600,7 @@
             // 
             // colPHAI
             // 
-            this.colPHAI.Caption = "Giới tính";
+            this.colPHAI.Caption = "Nam";
             this.colPHAI.FieldName = "PHAI";
             this.colPHAI.Name = "colPHAI";
             this.colPHAI.Visible = true;

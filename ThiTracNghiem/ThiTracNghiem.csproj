@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.BonusSkins.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -55,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BoDe.cs" />
     <Compile Include="BLL\CauHoi.cs" />
     <Compile Include="BLL\GiangDay.cs" />
     <Compile Include="BLL\GiangVien.cs" />
@@ -64,6 +68,8 @@
     <Compile Include="BLL\SinhVienBLL.cs" />
     <Compile Include="BLL\TrinhDo.cs" />
     <Compile Include="COMMON\KeyConst.cs" />
+    <Compile Include="COMMON\KiemTraLoi.cs" />
+    <Compile Include="COMMON\TietBatDau.cs" />
     <Compile Include="Entity\BANGDIEM.cs" />
     <Compile Include="Entity\BODE.cs" />
     <Compile Include="Entity\CAUHOI.cs" />
@@ -83,6 +89,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DtsTTN.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FormDangKyBoDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDangKyBoDe.Designer.cs">
+      <DependentUpon>FormDangKyBoDe.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDangNhap.cs">
       <SubType>Form</SubType>
@@ -132,6 +144,12 @@
     <Compile Include="FormThemLop.Designer.cs">
       <DependentUpon>FormThemLop.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormXemTruocBoDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormXemTruocBoDe.Designer.cs">
+      <DependentUpon>FormXemTruocBoDe.cs</DependentUpon>
+    </Compile>
     <Compile Include="FromThemSinhVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +163,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TRACNGHIEMDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormDangKyBoDe.resx">
+      <DependentUpon>FormDangKyBoDe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormThemLop.resx">
       <DependentUpon>FormThemLop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormXemTruocBoDe.resx">
+      <DependentUpon>FormXemTruocBoDe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FromThemSinhVien.resx">
       <DependentUpon>FromThemSinhVien.cs</DependentUpon>
@@ -217,7 +241,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

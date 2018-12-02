@@ -43,10 +43,12 @@
             this.txtHoTenLot = new DevExpress.XtraEditors.TextEdit();
             this.txtTen = new DevExpress.XtraEditors.TextEdit();
             this.txtHocVi = new DevExpress.XtraEditors.TextEdit();
-            this.txtMaKH = new DevExpress.XtraEditors.TextEdit();
             this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
+            this.kHOABindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kHOATableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.KHOATableAdapter();
+            this.cbbKhoa = new System.Windows.Forms.ComboBox();
             mAGVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -59,8 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtHoTenLot.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHocVi.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kHOABindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mAGVLabel
@@ -193,16 +195,6 @@
             this.txtHocVi.Size = new System.Drawing.Size(721, 46);
             this.txtHocVi.TabIndex = 8;
             // 
-            // txtMaKH
-            // 
-            this.txtMaKH.Location = new System.Drawing.Point(320, 23);
-            this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 25F);
-            this.txtMaKH.Properties.Appearance.Options.UseFont = true;
-            this.txtMaKH.Properties.ReadOnly = true;
-            this.txtMaKH.Size = new System.Drawing.Size(721, 46);
-            this.txtMaKH.TabIndex = 10;
-            // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(320, 452);
@@ -236,6 +228,28 @@
             this.btnThoat.UseVisualStyleBackColor = false;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
+            // kHOABindingSource
+            // 
+            this.kHOABindingSource.DataMember = "KHOA";
+            this.kHOABindingSource.DataSource = this.dtsTTN;
+            // 
+            // kHOATableAdapter
+            // 
+            this.kHOATableAdapter.ClearBeforeFill = true;
+            // 
+            // cbbKhoa
+            // 
+            this.cbbKhoa.DataSource = this.kHOABindingSource;
+            this.cbbKhoa.DisplayMember = "TENKH";
+            this.cbbKhoa.Font = new System.Drawing.Font("Tahoma", 25F);
+            this.cbbKhoa.FormattingEnabled = true;
+            this.cbbKhoa.Location = new System.Drawing.Point(320, 23);
+            this.cbbKhoa.Name = "cbbKhoa";
+            this.cbbKhoa.Size = new System.Drawing.Size(721, 48);
+            this.cbbKhoa.TabIndex = 14;
+            this.cbbKhoa.ValueMember = "MAKH";
+            this.cbbKhoa.SelectedIndexChanged += new System.EventHandler(this.kHOAComboBox_SelectedIndexChanged);
+            // 
             // FormThemGiangVien
             // 
             this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -243,6 +257,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1098, 672);
+            this.Controls.Add(this.cbbKhoa);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(mAGVLabel);
@@ -254,7 +269,6 @@
             this.Controls.Add(hOCVILabel);
             this.Controls.Add(this.txtHocVi);
             this.Controls.Add(mAKHLabel);
-            this.Controls.Add(this.txtMaKH);
             this.Controls.Add(eMAILLabel);
             this.Controls.Add(this.txtEmail);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
@@ -268,8 +282,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtHoTenLot.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHocVi.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kHOABindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,9 +299,11 @@
         private DevExpress.XtraEditors.TextEdit txtHoTenLot;
         private DevExpress.XtraEditors.TextEdit txtTen;
         private DevExpress.XtraEditors.TextEdit txtHocVi;
-        private DevExpress.XtraEditors.TextEdit txtMaKH;
         private DevExpress.XtraEditors.TextEdit txtEmail;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.BindingSource kHOABindingSource;
+        private DtsTTNTableAdapters.KHOATableAdapter kHOATableAdapter;
+        private System.Windows.Forms.ComboBox cbbKhoa;
     }
 }

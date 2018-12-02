@@ -2,13 +2,21 @@
 
 namespace ThiTracNghiem.COMMON
 {
-    public static class KeyConst
+    public class KeyConst
     {
-        public static string[] LUACHON =  new string[26]
+        public const int THOIGIANTHITOITHIEU = 15;
+        public const int THOIGIANTHITOIDA = 150;
+
+        public static string[] LUACHON = new string[26]
         {
             "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
         };
-        
+
+        public static int[] TIETBD = new int[7]
+        {
+          1,2,3,4,5,6,7
+        };
+
         public static class Lenh
         {
             public const string GetSVByMaSV = "SELECT * FROM SINHVIEN WHERE MASV = '{0}'";
@@ -22,6 +30,12 @@ namespace ThiTracNghiem.COMMON
             public const string GetTenMonHocByMaMH = "SELECT TENMH FROM MONHOC WHERE MAMH ='{0}'";
             public const string KiemTraQuyenTaoCauHoi = "SP_QUYENTAOCAUHOI";
             public const string GetCauHoiByMaCH = "SELECT * FROM CAUHOI WHERE MACH = {0}";
+            public const string CountBoDe = "SELECT COUNT(MABODE) FROM BODE";
+            public const string CountSV = "SELECT COUNT(MASV) FROM SINHVIEN WHERE MALOP = '{0}'";
+            public const string GetKhoaByMaKhoa = "SELECT * FROM KHOA WHERE MAKH = '{0}'";
+            public const string GetTDByMaTD = "SELECT * FROM TRINHDO WHERE MATD ='{0}'";
+            public const string CountCauHoiByMonHoc = "SELECT COUNT(MACH) FROM CAUHOI WHERE MAMH='{0}' AND TRINHDO = '{1}'";
+            public const string LayCauHoiTaoBD = "SP_TAOBODE '{0}','{1}','{2}',{3}";
         }
 
         public static class Role
@@ -40,14 +54,14 @@ namespace ThiTracNghiem.COMMON
         public static class MenuStripItemValue
         {
             public const string THEM = "them";
-            public const string XOA = "xoa";  
+            public const string XOA = "xoa";
             public const string LUU = "luu";
         }
 
         public static class MenuStripItemNameKhoa
         {
             public const string THEM = "Thêm khoa mới";
-            public const string XOA = "Xóa khoa";  
+            public const string XOA = "Xóa khoa";
             public const string LUU = "Lưu";
         }
         public static class MenuStripItemNameLop
@@ -66,7 +80,13 @@ namespace ThiTracNghiem.COMMON
         {
             public const string THEM = "Thêm câu hỏi mới";
             public const string XOA = "Xóa câu hỏi";
-            public const string LUU = "Lưu";   
+            public const string LUU = "Lưu";
         }
+
+        public static class EmailTag
+        {
+            public const string Student = "@student.ptithcm.edu.vn";
+            public const string Teacher = "@ptithcm.edu.vn";
+        }   
     }
 }

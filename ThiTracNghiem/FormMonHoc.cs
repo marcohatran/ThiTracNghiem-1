@@ -93,6 +93,7 @@ namespace ThiTracNghiem
                                 cAUHOIBindingSource.EndEdit();
                                 cAUHOIBindingSource.ResetCurrentItem();
                                 cAUHOITableAdapter.Connection.ConnectionString = Program.connstr;
+
                                 cAUHOITableAdapter.Update(dtsTTN.CAUHOI);
                             }
                             catch(Exception ex)
