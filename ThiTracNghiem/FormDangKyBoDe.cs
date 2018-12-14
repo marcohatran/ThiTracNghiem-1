@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using ThiTracNghiem.BLL;
 using ThiTracNghiem.COMMON;
@@ -11,11 +12,11 @@ namespace ThiTracNghiem
     {
         private DateTime NgayThi = DateTime.UtcNow;
         private int ThoiGianThi = 0;
-        private bool flagChangeNgay = false;
-        private string MaMH = null;  
+        private string MaMH = null;
         private string MaTD = null;
         private int TietBD = 0;
         private string MaKhoa = null;
+        List<int> lstMaCH = null;
         public FormDangKyBoDe()
         {
             InitializeComponent();
@@ -30,14 +31,15 @@ namespace ThiTracNghiem
             {
                 cbbCoSo.Enabled = false;
             }
+
+
         }
 
         public void ReloadData()
         {
             NgayThi = DateTime.UtcNow;
             ThoiGianThi = 0;
-            flagChangeNgay = false;
-            MaMH = null; 
+            MaMH = null;
             MaTD = null;
             TietBD = 0;
             txtSoCauThi.Text = string.Empty;
@@ -45,7 +47,7 @@ namespace ThiTracNghiem
         }
         public bool CheckData()
         {
-            if (NgayThi < DateTime.UtcNow)
+            if (NgayThi <= DateTime.UtcNow)
             {
                 MessageBox.Show("Ngày thi không hợp lệ!", "", MessageBoxButtons.OK);
                 return false;
@@ -55,17 +57,19 @@ namespace ThiTracNghiem
                 MessageBox.Show("Vui lòng chọn lại môn học!", "", MessageBoxButtons.OK);
                 return false;
             }
-            if(TietBD<1 || TietBD > 7)
+            if (TietBD < 1 || TietBD > 7)
             {
                 MessageBox.Show("Tiết bắt đầu thi không hợp lệ!", "", MessageBoxButtons.OK);
                 return false;
             }
-            if(ThoiGianThi <KeyConst.THOIGIANTHITOITHIEU || ThoiGianThi > KeyConst.THOIGIANTHITOIDA)
+            if (ThoiGianThi < KeyConst.THOIGIANTHITOITHIEU || ThoiGianThi > KeyConst.THOIGIANTHITOIDA)
             {
-                MessageBox.Show("Thời gian thi không hợp lệ!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Thời gian thi không hợp lệ, thời gian thi phải lớn hơn " + KeyConst.THOIGIANTHITOITHIEU.ToString() + " phút " +
+                    "và nhỏ hơn " + KeyConst.THOIGIANTHITOIDA.ToString() + " phút!"
+                     , "", MessageBoxButtons.OK);
                 return false;
             }
-            if(txtSoCauThi.Value <0 || txtSoCauThi.Value > 200)
+            if (txtSoCauThi.Value < 0 || txtSoCauThi.Value > 200)
             {
                 MessageBox.Show("Số câu hỏi cho một đề thi không hợp lệ!", "", MessageBoxButtons.OK);
                 return false;
@@ -76,14 +80,15 @@ namespace ThiTracNghiem
                 return false;
             }
             return true;
-        }  
+        }
         private void FormDangKyBoDe_Load(object sender, EventArgs e)
-        {
+        { 
+            bODETableAdapter.Fill(this.dtsTTN.BODE);
             dtsTTN.EnforceConstraints = false;
             lOPTableAdapter.Fill(dtsTTN.LOP);
             dANGKIBODETableAdapter.Fill(dtsTTN.DANGKIBODE);
             mONHOCTableAdapter.Fill(dtsTTN.MONHOC);
-            txtMaBD.Text = BoDe.TaoMaBD();
+            txtMaBD.Text = BoDe.TaoMaBD().ToString();
             txtMaGV.Text = Program.username;
             txtNgayDangKy.Text = DateTime.UtcNow.ToString("dd/MM/yyyy");
 
@@ -93,12 +98,21 @@ namespace ThiTracNghiem
             List<TietBatDau> lstTBD = new List<TietBatDau>();
             for (int i = 0; i < KeyConst.TIETBD.Length; i++)
             {
-                TietBatDau tbd = new TietBatDau("Tiết " + (i + 1).ToString(), i+1);
+                TietBatDau tbd = new TietBatDau("Tiết " + (i + 1).ToString(), i + 1);
                 lstTBD.Add(tbd);
             }
             cbbTietBD.DataSource = lstTBD;
             cbbTietBD.DisplayMember = "Ten";
             cbbTietBD.ValueMember = "TietBD";
+
+            cbbMaLop.SelectedIndex = 1;
+            cbbCoSo.SelectedIndex = 0;
+
+            cbbTietBD.SelectedIndex = 1;
+            cbbTietBD.SelectedIndex = 0;
+
+            cbbMonHoc.SelectedIndex = 1;
+            cbbMonHoc.SelectedIndex = 0;
         }
 
         private void cbbCoSo_SelectedIndexChanged(object sender, EventArgs e)
@@ -147,6 +161,9 @@ namespace ThiTracNghiem
             string maLop = cbbMaLop.SelectedValue.ToString().Trim();
             SetThongTinLop(maLop);
 
+            cbbMonHoc.SelectedIndex = 1;
+            cbbMonHoc.SelectedIndex = 0;
+
         }
 
         public void SetThongTinLop(string maLop)
@@ -182,17 +199,7 @@ namespace ThiTracNghiem
 
         private void cbbNgayThi_EditValueChanged(object sender, EventArgs e)
         {
-            //if (!flagChangeNgay)
-            //{
-            //    flagChangeNgay = true;
-            //    return;
-            //}
             DateTime ngayThi = cbbNgayThi.DateTime;
-            if (ngayThi <= DateTime.UtcNow)
-            {
-                MessageBox.Show("Ngày thi không hợp lệ, ngày thi phải lớn hơn ngày hiện tại", "", MessageBoxButtons.OK);
-                return;
-            }
             NgayThi = ngayThi;
         }
 
@@ -202,13 +209,6 @@ namespace ThiTracNghiem
             int tgThi;
             if (!Int32.TryParse(txtThoiGianThi.Value.ToString(), out tgThi))
             {
-                return;
-            }
-            if (tgThi < KeyConst.THOIGIANTHITOITHIEU || tgThi > KeyConst.THOIGIANTHITOIDA)
-            {
-                MessageBox.Show("Thời gian thi không hợp lệ, thời gian thi phải lớn hơn " + KeyConst.THOIGIANTHITOITHIEU.ToString() + " phút " +
-                     "và nhỏ hơn " + KeyConst.THOIGIANTHITOIDA.ToString() + " phút!"
-                      , "", MessageBoxButtons.OK);
                 return;
             }
             ThoiGianThi = tgThi;
@@ -225,18 +225,18 @@ namespace ThiTracNghiem
             if (!CheckData()) return;
 
             int demCauHoi = CauHoi.CountCauHoiByMonHoc(MaMH, MaTD);
-            if(demCauHoi < txtSoCauThi.Value)
+            if (demCauHoi < txtSoCauThi.Value)
             {
-                MessageBox.Show("Số câu hỏi không đủ để tạo đề thi, môn học này chỉ có "+ demCauHoi +" câu hỏi!", "Thông báo", MessageBoxButtons.OK);
-                return ;
+                MessageBox.Show("Số câu hỏi không đủ để tạo đề thi, môn học này chỉ có " + demCauHoi + " câu hỏi!", "Thông báo", MessageBoxButtons.OK);
+                return;
             }
-            List<int> lstMaCH = BoDe.LayCauHoiTaoBD(MaMH, MaKhoa, MaTD, (int)txtSoCauThi.Value);
-            if(lstMaCH.Count == 0)
+            lstMaCH = BoDe.LayCauHoiTaoBD(MaMH, MaKhoa, MaTD, (int)txtSoCauThi.Value);
+            if (lstMaCH.Count == 0)
             {
                 MessageBox.Show("Đã xảy ra lỗi khi tạo bộ đề thi, vui lòng thử lại sau!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-            FormXemTruocBoDe frmXemTruocBD = new FormXemTruocBoDe(MaKhoa, MaTD, cbbMonHoc.Text,lstMaCH,(int)txtThoiGianThi.Value);
+            FormXemTruocBoDe frmXemTruocBD = new FormXemTruocBoDe(MaKhoa, MaTD, cbbMonHoc.Text, lstMaCH, (int)txtThoiGianThi.Value);
             frmXemTruocBD.Show();
         }
 
@@ -251,7 +251,7 @@ namespace ThiTracNghiem
 
         private void cbbTietBD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbbTietBD.SelectedValue == null 
+            if (cbbTietBD.SelectedValue == null
                 || cbbTietBD.SelectedValue.ToString() == "System.Data.DataRowView"
                 || cbbTietBD.SelectedValue.ToString() == "ThiTracNghiem.COMMON.TietBatDau")
             {
@@ -260,6 +260,64 @@ namespace ThiTracNghiem
             TietBD = Int32.Parse(cbbTietBD.SelectedValue.ToString().Trim());
         }
 
+        private void btnDKBD_Click(object sender, EventArgs e)
+        {
+            if (lstMaCH == null || lstMaCH.Count == 0)
+            {
+                MessageBox.Show("Vui lòng nhấn xem trước bộ đề trước khi tạo để tránh sai xót, xin cảm ơn!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
 
+            DtsTTN.DANGKIBODERow dkbdRow = dtsTTN.DANGKIBODE.NewDANGKIBODERow();
+            try
+            {
+                dkbdRow.MABODE = Int32.Parse(txtMaBD.Text);
+                dkbdRow.MALOP = cbbMaLop.SelectedValue.ToString().Trim();
+                dkbdRow.MAMH = cbbMonHoc.SelectedValue.ToString().Trim();
+                dkbdRow.MAGV = txtMaGV.Text.Trim();
+                dkbdRow.NGAYTHI = cbbNgayThi.DateTime;
+                dkbdRow.SOCAUHOITHI = (int)txtSoCauThi.Value;
+                dkbdRow.THOIGIAN = (int)txtThoiGianThi.Value;
+                dkbdRow.TIETBATDAU = Int32.Parse(cbbTietBD.SelectedValue.ToString());
+                dkbdRow.NGAYDK = DateTime.UtcNow;//DateTime.Parse(txtNgayDangKy.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Đã xảy ra lỗi vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+           
+            DtsTTN.BODERow bodeRow = null;
+            for (int i = 0; i < lstMaCH.Count; i++)
+            {
+                bodeRow = dtsTTN.BODE.NewBODERow();
+                bodeRow.MABODE = dkbdRow.MABODE;
+                bodeRow.ID = i;
+                bodeRow.MACH = lstMaCH[i];
+                dtsTTN.BODE.AddBODERow(bodeRow);
+            }
+            dtsTTN.DANGKIBODE.AddDANGKIBODERow(dkbdRow);
+
+          SqlTransaction st = null;
+            try
+            {
+                if (Program.KetNoi() == 0) return;
+                st = Program.conn.BeginTransaction();
+                dANGKIBODETableAdapter.Transaction = st;
+                bODETableAdapter.Transaction = st;
+                tableAdapterManager.UpdateAll(dtsTTN);
+                st.Commit();
+                MessageBox.Show("Đăng ký bộ đề thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.None);
+                Parent.Enabled = true;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                st.Rollback();
+                MessageBox.Show("Lỗi kết nối!" + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
     }
 }

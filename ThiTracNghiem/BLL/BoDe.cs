@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using ThiTracNghiem.COMMON;
+using ThiTracNghiem.Entity;
 
 namespace ThiTracNghiem.BLL
 {
@@ -8,31 +9,20 @@ namespace ThiTracNghiem.BLL
     {
         public static int CountBoDe()
         {
-            if (Program.KetNoi() == 0) return 0;
+            if (Program.KetNoi() == 0) throw new System.Exception();
             SqlDataReader myReader;
             myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.CountBoDe));
-            if (myReader == null) return 0;
+            if (myReader == null) throw new System.Exception();
             myReader.Read();
             int dem = myReader.GetInt32(0);
             myReader.Close();
             return dem;
         }
 
-        public static string TaoMaBD()
+        public static int TaoMaBD()
         {
-            int demBD = CountBoDe();
-            if (demBD == 0)
-            {
-                return "BD01";
-            }
-            else
-            {
-                if (demBD < 10)
-                {
-                    return ("GV0" + (demBD + 1).ToString()).Trim();
-                }
-                return ("GV" + (demBD + 1).ToString()).Trim();
-            }
+            int demBD = CountBoDe();   
+            return demBD+1;  
         }
 
         public static List<int> LayCauHoiTaoBD(string maMH, string maKhoa, string maTD, int soCauThi)
@@ -49,6 +39,6 @@ namespace ThiTracNghiem.BLL
             }  
             myReader.Close();
             return lstMaCH;
-        }
+        }  
     }
 }

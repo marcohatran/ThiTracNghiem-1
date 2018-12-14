@@ -71,7 +71,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTrinhDo.AutoSize = true;
             this.lblTrinhDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.lblTrinhDo.Location = new System.Drawing.Point(359, 121);
+            this.lblTrinhDo.Location = new System.Drawing.Point(127, 121);
             this.lblTrinhDo.Name = "lblTrinhDo";
             this.lblTrinhDo.Size = new System.Drawing.Size(142, 39);
             this.lblTrinhDo.TabIndex = 2;
@@ -84,7 +84,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTenKhoa.AutoSize = true;
             this.lblTenKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.lblTenKhoa.Location = new System.Drawing.Point(359, 65);
+            this.lblTenKhoa.Location = new System.Drawing.Point(127, 65);
             this.lblTenKhoa.Name = "lblTenKhoa";
             this.lblTenKhoa.Size = new System.Drawing.Size(97, 39);
             this.lblTenKhoa.TabIndex = 1;
@@ -97,7 +97,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTenMonHoc.AutoSize = true;
             this.lblTenMonHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.lblTenMonHoc.Location = new System.Drawing.Point(359, 9);
+            this.lblTenMonHoc.Location = new System.Drawing.Point(127, 9);
             this.lblTenMonHoc.Name = "lblTenMonHoc";
             this.lblTenMonHoc.Size = new System.Drawing.Size(310, 39);
             this.lblTenMonHoc.TabIndex = 0;

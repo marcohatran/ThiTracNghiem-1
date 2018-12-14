@@ -64,5 +64,6 @@ namespace ThiTracNghiem
             rtbCau.SelectionStart = 0;
             pnBaiThi.Controls.Add(rtbCau);
         }
+            
     }
 }

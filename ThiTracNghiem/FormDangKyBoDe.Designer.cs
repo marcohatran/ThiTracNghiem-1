@@ -73,6 +73,8 @@
             this.lOPTableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.LOPTableAdapter();
             this.mONHOCBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mONHOCTableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.MONHOCTableAdapter();
+            this.bODEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bODETableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.BODETableAdapter();
             mALOPLabel = new System.Windows.Forms.Label();
             mAMHLabel = new System.Windows.Forms.Label();
             mAGVLabel = new System.Windows.Forms.Label();
@@ -102,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtThoiGianThi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mONHOCBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mALOPLabel
@@ -222,7 +225,7 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BANGDIEMTableAdapter = null;
-            this.tableAdapterManager.BODETableAdapter = null;
+            this.tableAdapterManager.BODETableAdapter = this.bODETableAdapter;
             this.tableAdapterManager.CAUHOITableAdapter = null;
             this.tableAdapterManager.COSOTableAdapter = null;
             this.tableAdapterManager.CT_BAITHITableAdapter = null;
@@ -354,6 +357,7 @@
             this.btnDKBD.TabIndex = 23;
             this.btnDKBD.Text = "Đăng ký bộ đề";
             this.btnDKBD.UseVisualStyleBackColor = false;
+            this.btnDKBD.Click += new System.EventHandler(this.btnDKBD_Click);
             // 
             // btnTest
             // 
@@ -569,6 +573,15 @@
             // 
             this.mONHOCTableAdapter.ClearBeforeFill = true;
             // 
+            // bODEBindingSource
+            // 
+            this.bODEBindingSource.DataMember = "BODE";
+            this.bODEBindingSource.DataSource = this.dtsTTN;
+            // 
+            // bODETableAdapter
+            // 
+            this.bODETableAdapter.ClearBeforeFill = true;
+            // 
             // FormDangKyBoDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -602,6 +615,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtThoiGianThi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mONHOCBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bODEBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -642,5 +656,7 @@
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.ComboBox cbbTietBD;
         private DevExpress.XtraEditors.SpinEdit txtThoiGianThi;
+        private System.Windows.Forms.BindingSource bODEBindingSource;
+        private DtsTTNTableAdapters.BODETableAdapter bODETableAdapter;
     }
 }

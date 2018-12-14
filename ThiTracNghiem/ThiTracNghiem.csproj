@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="BLL\BoDe.cs" />
     <Compile Include="BLL\CauHoi.cs" />
+    <Compile Include="BLL\DangKyBoDe.cs" />
     <Compile Include="BLL\GiangDay.cs" />
     <Compile Include="BLL\GiangVien.cs" />
     <Compile Include="BLL\Khoa.cs" />
