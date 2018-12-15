@@ -43,6 +43,7 @@
             this.dANGKIBODEBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dANGKIBODETableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.DANGKIBODETableAdapter();
             this.tableAdapterManager = new ThiTracNghiem.DtsTTNTableAdapters.TableAdapterManager();
+            this.bODETableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.BODETableAdapter();
             this.txtMaGV = new DevExpress.XtraEditors.TextEdit();
             this.cbbNgayThi = new DevExpress.XtraEditors.DateEdit();
             this.txtSoCauThi = new DevExpress.XtraEditors.SpinEdit();
@@ -74,7 +75,6 @@
             this.mONHOCBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mONHOCTableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.MONHOCTableAdapter();
             this.bODEBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bODETableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.BODETableAdapter();
             mALOPLabel = new System.Windows.Forms.Label();
             mAMHLabel = new System.Windows.Forms.Label();
             mAGVLabel = new System.Windows.Forms.Label();
@@ -240,6 +240,10 @@
             this.tableAdapterManager.TRINHDOTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ThiTracNghiem.DtsTTNTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // bODETableAdapter
+            // 
+            this.bODETableAdapter.ClearBeforeFill = true;
+            // 
             // txtMaGV
             // 
             this.txtMaGV.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.dANGKIBODEBindingSource, "MAGV", true));
@@ -339,7 +343,7 @@
             // 
             this.btnThoat.BackColor = System.Drawing.Color.Red;
             this.btnThoat.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.btnThoat.Location = new System.Drawing.Point(1184, 534);
+            this.btnThoat.Location = new System.Drawing.Point(1184, 532);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(308, 45);
             this.btnThoat.TabIndex = 24;
@@ -351,7 +355,7 @@
             // 
             this.btnDKBD.BackColor = System.Drawing.Color.Lime;
             this.btnDKBD.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.btnDKBD.Location = new System.Drawing.Point(1184, 455);
+            this.btnDKBD.Location = new System.Drawing.Point(1184, 453);
             this.btnDKBD.Name = "btnDKBD";
             this.btnDKBD.Size = new System.Drawing.Size(308, 45);
             this.btnDKBD.TabIndex = 23;
@@ -577,10 +581,6 @@
             // 
             this.bODEBindingSource.DataMember = "BODE";
             this.bODEBindingSource.DataSource = this.dtsTTN;
-            // 
-            // bODETableAdapter
-            // 
-            this.bODETableAdapter.ClearBeforeFill = true;
             // 
             // FormDangKyBoDe
             // 

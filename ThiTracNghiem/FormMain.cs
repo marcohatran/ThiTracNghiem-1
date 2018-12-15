@@ -116,5 +116,29 @@ namespace ThiTracNghiem
                 frmDKBD.Show();
             }
         }
+
+        private void btnDanhSachBD_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(DanhSachBoDeGVDK));
+            if (frm != null) frm.Activate();
+            else
+            {
+                DanhSachBoDeGVDK frmDKBDGV = new DanhSachBoDeGVDK();
+                ConfigForm(frmDKBDGV);
+                frmDKBDGV.Show();
+            }
+        }
+
+        private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(DanhSachBoDeGVDK));
+            if (frm != null) frm.Activate();
+            else
+            {
+                FormThi frmTHi = new FormThi(46007, 1);
+                ConfigForm(frmTHi);
+                frmTHi.Show();
+            }
+        }
     }
 }

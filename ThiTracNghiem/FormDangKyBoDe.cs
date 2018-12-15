@@ -17,6 +17,7 @@ namespace ThiTracNghiem
         private int TietBD = 0;
         private string MaKhoa = null;
         List<int> lstMaCH = null;
+        private int MaBD = -1;
         public FormDangKyBoDe()
         {
             InitializeComponent();
@@ -82,7 +83,7 @@ namespace ThiTracNghiem
             return true;
         }
         private void FormDangKyBoDe_Load(object sender, EventArgs e)
-        { 
+        {
             bODETableAdapter.Fill(this.dtsTTN.BODE);
             dtsTTN.EnforceConstraints = false;
             lOPTableAdapter.Fill(dtsTTN.LOP);
@@ -287,30 +288,29 @@ namespace ThiTracNghiem
                 return;
             }
 
-           
+
             DtsTTN.BODERow bodeRow = null;
             for (int i = 0; i < lstMaCH.Count; i++)
             {
                 bodeRow = dtsTTN.BODE.NewBODERow();
-                bodeRow.MABODE = dkbdRow.MABODE;
+                MaBD = bodeRow.MABODE = dkbdRow.MABODE;
                 bodeRow.ID = i;
                 bodeRow.MACH = lstMaCH[i];
                 dtsTTN.BODE.AddBODERow(bodeRow);
             }
             dtsTTN.DANGKIBODE.AddDANGKIBODERow(dkbdRow);
 
-          SqlTransaction st = null;
+            SqlTransaction st = null;
             try
             {
                 if (Program.KetNoi() == 0) return;
                 st = Program.conn.BeginTransaction();
                 dANGKIBODETableAdapter.Transaction = st;
                 bODETableAdapter.Transaction = st;
-                tableAdapterManager.UpdateAll(dtsTTN);
+                int a = tableAdapterManager.UpdateAll(dtsTTN);
                 st.Commit();
                 MessageBox.Show("Đăng ký bộ đề thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.None);
                 Parent.Enabled = true;
-                Close();
             }
             catch (Exception ex)
             {
@@ -318,6 +318,6 @@ namespace ThiTracNghiem
                 MessageBox.Show("Lỗi kết nối!" + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-        }
+        } 
     }
 }

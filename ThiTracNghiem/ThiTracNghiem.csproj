@@ -71,6 +71,12 @@
     <Compile Include="COMMON\KeyConst.cs" />
     <Compile Include="COMMON\KiemTraLoi.cs" />
     <Compile Include="COMMON\TietBatDau.cs" />
+    <Compile Include="DanhSachBoDeGVDK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhSachBoDeGVDK.Designer.cs">
+      <DependentUpon>DanhSachBoDeGVDK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entity\BANGDIEM.cs" />
     <Compile Include="Entity\BODE.cs" />
     <Compile Include="Entity\CAUHOI.cs" />
@@ -80,6 +86,8 @@
     <Compile Include="Entity\DANGKIBODE.cs" />
     <Compile Include="Entity\GIANGDAY.cs" />
     <Compile Include="Entity\GIANGVIEN.cs" />
+    <Compile Include="Entity\HoTroLayCauHoiThi.cs" />
+    <Compile Include="Entity\HoTroThi.cs" />
     <Compile Include="Entity\KHOA.cs" />
     <Compile Include="Entity\LOP.cs" />
     <Compile Include="Entity\LUACHON.cs" />
@@ -145,6 +153,12 @@
     <Compile Include="FormThemLop.Designer.cs">
       <DependentUpon>FormThemLop.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThi.Designer.cs">
+      <DependentUpon>FormThi.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormXemTruocBoDe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +178,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TRACNGHIEMDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DanhSachBoDeGVDK.resx">
+      <DependentUpon>DanhSachBoDeGVDK.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDangKyBoDe.resx">
       <DependentUpon>FormDangKyBoDe.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormThemLop.resx">
       <DependentUpon>FormThemLop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThi.resx">
+      <DependentUpon>FormThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormXemTruocBoDe.resx">
       <DependentUpon>FormXemTruocBoDe.cs</DependentUpon>

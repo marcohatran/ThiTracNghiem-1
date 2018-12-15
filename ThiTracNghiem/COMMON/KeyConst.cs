@@ -36,6 +36,7 @@ namespace ThiTracNghiem.COMMON
             public const string GetTDByMaTD = "SELECT * FROM TRINHDO WHERE MATD ='{0}'";
             public const string CountCauHoiByMonHoc = "SELECT COUNT(MACH) FROM CAUHOI WHERE MAMH='{0}' AND TRINHDO = '{1}'";
             public const string LayCauHoiTaoBD = "SP_TAOBODE '{0}','{1}','{2}',{3}";
+            public const string LayCauHoiThi = "SELECT MACH, ID FROM BODE WHERE MABODE = {0} ORDER BY ID";
         }
 
         public static class Role

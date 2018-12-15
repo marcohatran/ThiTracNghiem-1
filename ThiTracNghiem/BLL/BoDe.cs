@@ -21,8 +21,8 @@ namespace ThiTracNghiem.BLL
 
         public static int TaoMaBD()
         {
-            int demBD = CountBoDe();   
-            return demBD+1;  
+            int demBD = CountBoDe();
+            return demBD + 1;
         }
 
         public static List<int> LayCauHoiTaoBD(string maMH, string maKhoa, string maTD, int soCauThi)
@@ -30,15 +30,36 @@ namespace ThiTracNghiem.BLL
             List<int> lstMaCH = new List<int>();
             if (Program.KetNoi() == 0) return lstMaCH;
             SqlDataReader myReader;
-            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.LayCauHoiTaoBD,maMH,maKhoa,maTD,soCauThi));
+            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.LayCauHoiTaoBD, maMH, maKhoa, maTD, soCauThi));
             if (myReader == null) return lstMaCH;
-            while(myReader.Read())
+            while (myReader.Read())
             {
                 int maCH = myReader.GetInt32(0);
                 lstMaCH.Add(maCH);
-            }  
+            }
             myReader.Close();
             return lstMaCH;
-        }  
+        }
+
+        public static List<HoTroLayBDThi> LayBDThi(int maBD)
+        {
+            List<HoTroLayBDThi> lstHTT = new List<HoTroLayBDThi>();
+            if (Program.KetNoi() == 0) return null;
+            SqlDataReader myReader;
+            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.LayCauHoiThi, maBD));
+            if (myReader == null) return null;
+            HoTroLayBDThi ht = new HoTroLayBDThi();
+            while (myReader.Read())
+            {
+                ht = new HoTroLayBDThi
+                {
+                    MaCauHoi = myReader.GetInt32(0),
+                    SoTT = myReader.GetInt32(1)
+                };
+                lstHTT.Add(ht);
+            }
+            myReader.Close();
+            return lstHTT;
+        }
     }
 }

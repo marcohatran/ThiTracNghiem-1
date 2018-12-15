@@ -73,7 +73,15 @@ namespace ThiTracNghiem
                     MessageBox.Show("Vui lòng nhập mã sinh viên !", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                SINHVIEN sv = SinhVien.GetSinhVienByMaSV(Program.MaSVDN);
+                SINHVIEN sv = null;
+                try
+                {
+                    sv = SinhVien.GetSinhVienByMaSV(Program.MaSVDN);
+                }
+                catch
+                {
+                    sv = null;
+                }
                 if (sv == null)
                 {
                     MessageBox.Show("Mã sinh viên không tồn tại, Vui lòng nhập lại !",
