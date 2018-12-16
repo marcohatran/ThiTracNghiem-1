@@ -111,7 +111,7 @@
             // 
             // txtTenDN
             // 
-            this.txtTenDN.EditValue = "LNKT";
+            this.txtTenDN.EditValue = "N14CDCN01 ";
             this.txtTenDN.Location = new System.Drawing.Point(324, 306);
             this.txtTenDN.Name = "txtTenDN";
             this.txtTenDN.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);

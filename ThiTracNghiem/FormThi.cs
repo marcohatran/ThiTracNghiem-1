@@ -6,6 +6,8 @@ using ThiTracNghiem.BLL;
 using ThiTracNghiem.Entity;
 using System.Linq;
 using System.Drawing.Drawing2D;
+using System.Data.SqlClient;
+using ThiTracNghiem.COMMON;
 
 namespace ThiTracNghiem
 {
@@ -18,7 +20,7 @@ namespace ThiTracNghiem
         private int Phut = 0;
         private int Giay = 60;
         private int MaBD = -1;
-        private List<HoTroLayBDThi> BDThi = null;
+        private List<HoTroLayBDThi> BDThi = new List<HoTroLayBDThi>(); 
         private List<HoTroLayBDThi> BDThiTam = null;
         private List<HoTroLayCauHoiThi> CAUHOITHI = null;
         private Random rnd = new Random();
@@ -34,13 +36,16 @@ namespace ThiTracNghiem
 
         private void FormThi_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dtsTTN.CT_BAITHI' table. You can move, or remove it, as needed.
+            this.cT_BAITHITableAdapter.Fill(this.dtsTTN.CT_BAITHI);
+            bANGDIEMTableAdapter.Fill(this.dtsTTN.BANGDIEM);
             MyTimer.Interval = (1000); // 1 mins
             MyTimer.Tick += new EventHandler(t_Tick);
             MyTimer.Start();
 
             if (MaBD != -1)
             {
-                BDThi = BDThiTam = BoDe.LayBDThi(MaBD);
+                BDThiTam = BoDe.LayBDThi(MaBD);
                 if (BDThi == null)
                 {
                     return;
@@ -54,6 +59,7 @@ namespace ThiTracNghiem
                     htCHThi = new HoTroLayCauHoiThi();
                     int r = rnd.Next(BDThiTam.Count);
                     HoTroLayBDThi ht = BDThiTam[r];
+                    BDThi.Add(ht);
                     CAUHOI cauHoi = CauHoi.GetCauHoiByMaCH(ht.MaCauHoi);
                     List<LUACHON> luachon = CauHoi.GetLuaChonByMaCH(ht.MaCauHoi);
 
@@ -197,9 +203,45 @@ namespace ThiTracNghiem
         {
             int soCauDung;
             float diem = ChamDiem(out soCauDung);
-            if (MessageBox.Show("Bạn đúng " + soCauDung + " câu và được " + diem + " điểm", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            if (MessageBox.Show("Bạn đúng " + soCauDung +"/"+ CAUHOITHI.Count+ " câu và được " + diem + " điểm", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
             {
                 XemLaiBaiThi();
+            }
+            if(Program.mGroup.Trim() == KeyConst.Role.SINHVIEN)
+            {
+                try
+                {
+                    dtsTTN.EnforceConstraints = false;
+                    int maBT = ChiTietBaiThi.TaoMaBaiThi();
+                    for (int i = 0; i < CAUHOITHI.Count; i++)
+                    {
+                        DtsTTN.CT_BAITHIRow ctBT = dtsTTN.CT_BAITHI.NewCT_BAITHIRow();
+                        ctBT.MABAITHI = maBT;
+                        ctBT.IDBD = CAUHOITHI[i].STT;
+                        ctBT.SVCHON = CAUHOITHI[i].LuaChon;
+                        ctBT.STT = CAUHOITHI[i].STTKhiThi;
+                        dtsTTN.CT_BAITHI.AddCT_BAITHIRow(ctBT);
+                    }
+                    DtsTTN.BANGDIEMRow bdRow = dtsTTN.BANGDIEM.NewBANGDIEMRow();
+                    bdRow.DIEM = diem;
+                    bdRow.MABAITHI = maBT;
+                    bdRow.MABODE = MaBD;
+                    bdRow.MASV = Program.MaSVDN;
+                    dtsTTN.BANGDIEM.AddBANGDIEMRow(bdRow);
+                    
+                    SqlTransaction st = null;
+                    if (Program.KetNoi() == 0) return;
+                    st = Program.conn.BeginTransaction();
+                    bANGDIEMTableAdapter.Transaction = st;
+                    cT_BAITHITableAdapter.Transaction = st;
+                    tableAdapterManager.UpdateAll(dtsTTN);
+                    st.Commit();
+                    MessageBox.Show("Lưu bài thi thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.None);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Đã xảy ra lỗi khi lưu bảng điểm!/n"+ ex.Message, "Thông báo", MessageBoxButtons.OK);
+                }
             }
             Close();
         }
@@ -233,6 +275,14 @@ namespace ThiTracNghiem
 
         public void XemLaiBaiThi()
         {
+
+        }
+
+        private void bANGDIEMBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.bANGDIEMBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.dtsTTN);
 
         }
     }

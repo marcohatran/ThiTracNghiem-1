@@ -37,6 +37,10 @@ namespace ThiTracNghiem.COMMON
             public const string CountCauHoiByMonHoc = "SELECT COUNT(MACH) FROM CAUHOI WHERE MAMH='{0}' AND TRINHDO = '{1}'";
             public const string LayCauHoiTaoBD = "SP_TAOBODE '{0}','{1}','{2}',{3}";
             public const string LayCauHoiThi = "SELECT MACH, ID FROM BODE WHERE MABODE = {0} ORDER BY ID";
+            public const string GetGiangVienByMa = "SELECT * FROM GIANGVIEN WHERE MAGV ='{0}'";
+            public const string GetDKBDByMaLop_MaMonHoc = "SELECT * FROM DANGKIBODE WHERE MALOP = '{0}' AND MAMH ='{1}'";
+            public const string TaoMaBaiThi = "SELECT COUNT(MABAITHI) FROM CT_BAITHI";
+            public const string CountBangDiemByMaBDAndMaSV = "SELECT COUNT(MABODE) FROM BANGDIEM WHERE MABODE = '{0}' AND MASV ='{1}'";
         }
 
         public static class Role

@@ -15,7 +15,7 @@ namespace ThiTracNghiem.BLL
         {
             if (Program.KetNoi() == 0) return null;
             SqlDataReader myReader;
-            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.GetKhoaByMaKhoa, maKhoa));
+            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.GetKhoaByMaKhoa, maKhoa.Trim()));
             if (myReader == null) return null;
             myReader.Read();
             KHOA lp = new KHOA()

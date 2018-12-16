@@ -61,7 +61,7 @@ namespace ThiTracNghiem.BLL
         {
             if (Program.KetNoi() == 0) return null;
             SqlDataReader myReader;
-            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.GetLopByMaLop, maLop));
+            myReader = Program.ExecSqlDataReader(string.Format(KeyConst.Lenh.GetLopByMaLop, maLop.Trim()));
             if (myReader == null) return null;
             myReader.Read();
             LOP lp = new LOP()

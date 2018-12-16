@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbGiay = new System.Windows.Forms.Label();
             this.lbGio = new System.Windows.Forms.Label();
@@ -35,8 +36,17 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNopBai = new System.Windows.Forms.Button();
             this.pnThi = new System.Windows.Forms.Panel();
+            this.dtsTTN = new ThiTracNghiem.DtsTTN();
+            this.bANGDIEMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bANGDIEMTableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.BANGDIEMTableAdapter();
+            this.tableAdapterManager = new ThiTracNghiem.DtsTTNTableAdapters.TableAdapterManager();
+            this.cT_BAITHIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cT_BAITHITableAdapter = new ThiTracNghiem.DtsTTNTableAdapters.CT_BAITHITableAdapter();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtsTTN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bANGDIEMBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cT_BAITHIBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -114,6 +124,48 @@
             this.pnThi.Size = new System.Drawing.Size(1739, 606);
             this.pnThi.TabIndex = 5;
             // 
+            // dtsTTN
+            // 
+            this.dtsTTN.DataSetName = "DtsTTN";
+            this.dtsTTN.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bANGDIEMBindingSource
+            // 
+            this.bANGDIEMBindingSource.DataMember = "BANGDIEM";
+            this.bANGDIEMBindingSource.DataSource = this.dtsTTN;
+            // 
+            // bANGDIEMTableAdapter
+            // 
+            this.bANGDIEMTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BANGDIEMTableAdapter = this.bANGDIEMTableAdapter;
+            this.tableAdapterManager.BODETableAdapter = null;
+            this.tableAdapterManager.CAUHOITableAdapter = null;
+            this.tableAdapterManager.COSOTableAdapter = null;
+            this.tableAdapterManager.CT_BAITHITableAdapter = this.cT_BAITHITableAdapter;
+            this.tableAdapterManager.DANGKIBODETableAdapter = null;
+            this.tableAdapterManager.GIANGDAYTableAdapter = null;
+            this.tableAdapterManager.GIANGVIENTableAdapter = null;
+            this.tableAdapterManager.KHOATableAdapter = null;
+            this.tableAdapterManager.LOPTableAdapter = null;
+            this.tableAdapterManager.LUACHONTableAdapter = null;
+            this.tableAdapterManager.MONHOCTableAdapter = null;
+            this.tableAdapterManager.SINHVIENTableAdapter = null;
+            this.tableAdapterManager.TRINHDOTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = ThiTracNghiem.DtsTTNTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // cT_BAITHIBindingSource
+            // 
+            this.cT_BAITHIBindingSource.DataMember = "CT_BAITHI";
+            this.cT_BAITHIBindingSource.DataSource = this.dtsTTN;
+            // 
+            // cT_BAITHITableAdapter
+            // 
+            this.cT_BAITHITableAdapter.ClearBeforeFill = true;
+            // 
             // FormThi
             // 
             this.AllowDrop = true;
@@ -133,6 +185,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtsTTN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bANGDIEMBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cT_BAITHIBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,5 +201,11 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnNopBai;
         private System.Windows.Forms.Panel pnThi;
+        private DtsTTN dtsTTN;
+        private System.Windows.Forms.BindingSource bANGDIEMBindingSource;
+        private DtsTTNTableAdapters.BANGDIEMTableAdapter bANGDIEMTableAdapter;
+        private DtsTTNTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.BindingSource cT_BAITHIBindingSource;
+        private DtsTTNTableAdapters.CT_BAITHITableAdapter cT_BAITHITableAdapter;
     }
 }

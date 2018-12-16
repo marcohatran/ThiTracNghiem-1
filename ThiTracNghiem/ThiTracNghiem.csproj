@@ -58,8 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BangDiem.cs" />
     <Compile Include="BLL\BoDe.cs" />
     <Compile Include="BLL\CauHoi.cs" />
+    <Compile Include="BLL\ChiTietBaiThi.cs" />
     <Compile Include="BLL\DangKyBoDe.cs" />
     <Compile Include="BLL\GiangDay.cs" />
     <Compile Include="BLL\GiangVien.cs" />
@@ -159,6 +161,12 @@
     <Compile Include="FormThi.Designer.cs">
       <DependentUpon>FormThi.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormXemLichThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormXemLichThi.Designer.cs">
+      <DependentUpon>FormXemLichThi.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormXemTruocBoDe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormThi.resx">
       <DependentUpon>FormThi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormXemLichThi.resx">
+      <DependentUpon>FormXemLichThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormXemTruocBoDe.resx">
       <DependentUpon>FormXemTruocBoDe.cs</DependentUpon>

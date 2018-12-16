@@ -7,6 +7,7 @@ namespace ThiTracNghiem
 {
     public partial class FormMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        string ROLE = null;
         public FormMain()
         {
             this.WindowState = FormWindowState.Maximized;
@@ -23,18 +24,23 @@ namespace ThiTracNghiem
             txtUserInfo.Caption = Program.thongtintaikhoan;
         }
 
-        public void setQuyen(String role)
+        public void setQuyen(string role)
         {
+            ROLE = role;
             if (role.Equals(KeyConst.Role.GIANGVIEN))      // GIẢNG VIÊN
             {
+                rbpHeThong.Visible = btnQLGV.Enabled = btnQL_TH.Enabled = false;
             }
             else if (role.Equals(KeyConst.Role.SINHVIEN))    // SINH VIÊN
             {
+                btn_DK_BD.Enabled = btnQL_TH.Enabled = btnQLSV.Enabled = btnQLLop.Enabled = btnQLKhoa.Enabled = btnQLGV.Enabled = false;
+                rbpHeThong.Visible =btnPGV_TK.Enabled = btnMonHoc.Enabled = btnDanhSachBD.Enabled  = false;
             }
-            else// KHOA HOẶC PHÒNG GIÁO VỤ
+            else if(role.Equals(KeyConst.Role.KHOA))
             {
-                rbpHeThong.Visible = true;
-            }
+                rbpHeThong.Visible = false;
+                btn_DK_BD.Enabled = false; 
+            }  
         }
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
@@ -105,7 +111,19 @@ namespace ThiTracNghiem
             }
         }
 
-        private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnDanhSachBD_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(DanhSachBoDeGVDK));
+            if (frm != null) frm.Activate();
+            else
+            {
+                DanhSachBoDeGVDK frmDKBDGV = new DanhSachBoDeGVDK();
+                ConfigForm(frmDKBDGV);
+                frmDKBDGV.Show();
+            }
+        }     
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             Form frm = this.CheckExists(typeof(FormDangKyBoDe));
             if (frm != null) frm.Activate();
@@ -117,27 +135,15 @@ namespace ThiTracNghiem
             }
         }
 
-        private void btnDanhSachBD_ItemClick(object sender, ItemClickEventArgs e)
+        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Form frm = this.CheckExists(typeof(DanhSachBoDeGVDK));
+            Form frm = this.CheckExists(typeof(FormXemLichThi));
             if (frm != null) frm.Activate();
             else
             {
-                DanhSachBoDeGVDK frmDKBDGV = new DanhSachBoDeGVDK();
-                ConfigForm(frmDKBDGV);
-                frmDKBDGV.Show();
-            }
-        }
-
-        private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            Form frm = this.CheckExists(typeof(DanhSachBoDeGVDK));
-            if (frm != null) frm.Activate();
-            else
-            {
-                FormThi frmTHi = new FormThi(46007, 1);
-                ConfigForm(frmTHi);
-                frmTHi.Show();
+                FormXemLichThi frmXemLichThi = new FormXemLichThi();
+                ConfigForm(frmXemLichThi);
+                frmXemLichThi.Show();
             }
         }
     }
